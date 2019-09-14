@@ -1,0 +1,42 @@
+
+.card-header .fa {
+  transition: .3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(90deg);
+}
+
+.red {
+    color: red;
+}
+.green {
+    color: darkgreen;
+}
+
+
+.free, .premium, .ultimate{
+    text-align:center;
+}
+.free {
+    background: #A2D2F0;    
+}
+.premium {
+    background: #FFDBA6;
+    cursor:pointer;
+}
+.ultimate{
+    background: #B8EDC8;
+    cursor:pointer;
+}
+/*
+.free :hover{
+    background: #D9EDF9;    
+}
+.premium :hover {
+    background: #FFF0D9;
+}
+.ultimate :hover{
+    background: #DFF7E7;
+}
+
+/**/

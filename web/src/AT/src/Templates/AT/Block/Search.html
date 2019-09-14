@@ -1,0 +1,40 @@
+<div class="card">
+
+    <h1 class="card-header">Vyhledávaní firem</h1>
+    <div class="card-body">
+        <form class="form-inline  justify-content-center" method="post" action="/Content_Cat:Search/">
+            <div class="input-group col-md-12">
+              <input type="text" class="form-control" name="text" placeholder="Název nebo IČO společnosti" value="{{Term}}">
+              <button type="submit" class="btn btn-outline-primary mb-2">Vyhledat</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{{#Firmy.0}}
+<table class="table">
+{{#Firmy}}
+
+<tr>
+<td>
+    <a class="btn btn-light form-control" href="/Content_Cat:Firma/ico={{ICO}}">{{Name}}</a>
+    </td>
+<td>{{Rating}}</td>
+</tr>
+{{/Firmy}}
+<table>
+{{/Firmy.0}}
+
+{{^Firmy.0}}
+
+{{#Term}}
+<br>
+<p class="alert alert-warning">Neboli nájdené žiadne firmy</p>
+{{/Term}}
+{{^Term}}
+<br>
+<p class="alert alert-primary">Zadejte vyhladávací výraz</p>
+{{/Term}}
+
+{{/Firmy.0}}
