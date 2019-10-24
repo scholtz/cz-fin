@@ -1,0 +1,81 @@
+@import '~font-awesome/css/font-awesome.css'; 
+
+th:nth-of-type(n+4):last-child,
+td:nth-of-type(n+4):last-child {
+    text-align: right;
+}
+
+.card-header .fa {
+  transition: .3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(90deg);
+}
+
+.red {
+    color: red;
+}
+.green {
+    color: darkgreen;
+}
+
+
+.free, .personal, .premium, .enterprise{
+    text-align:center !important;
+}
+.free {
+    background: #A2D2F0;    
+}
+.personal {
+    background: #FFDBA6;
+    cursor:pointer;
+}
+.premium{
+    background: #B8EDC8;
+    cursor:pointer;
+}
+.enterprise{
+    background: #f266f5;
+    cursor:pointer;
+}
+/*
+.free :hover{
+    background: #D9EDF9;    
+}
+.personal :hover {
+    background: #FFF0D9;
+}
+.premium :hover{
+    background: #DFF7E7;
+}
+
+/**/
+
+.darken1{
+ box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .1);
+}
+.darken2{
+ box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .3);
+ color: white;
+ font-weight:bold;
+}
+
+
+tfoot{
+    font-size: smaller;
+    color: #999;
+}
+
+h1, h2, h3, h4{
+    color: #1a74a8;
+}
+
+h1{
+    padding-top: 1em;
+}
+#T_Content_Cat{
+    
+    min-height: 500px;
+    
+}
+

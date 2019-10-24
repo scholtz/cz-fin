@@ -1,0 +1,30 @@
+{
+  "name": "cz-fin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config config.prod.js --mode production"
+  },
+  "author": "Ludovit Scholtz",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "compression-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "fibers": "^4.0.1",
+    "file-loader": "^4.2.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "lightbox2": "^2.11.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "popper.js": "^1.15.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "sass": "^1.23.0",
+    "sass-loader": "^8.0.0",
+    "url-loader": "^2.2.0",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  }
+}
