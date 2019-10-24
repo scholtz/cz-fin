@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SHOP>
+  <SHOPITEM>
+    <ITEM_ID>FinPERSONAL</ITEM_ID>
+    <PRODUCTNAME>Licence Fin PERSONAL na jeden rok používaní</PRODUCTNAME>
+    <PRODUCT>Licence Fin PERSONAL</PRODUCT>
+    <DESCRIPTION>Denný Monitoring médií, Mesačný Monitoring tisku, informace z katalogu firem</DESCRIPTION>
+    <URL>https://cz-fin.com/Personal</URL>
+    <PRICE_VAT>9999</PRICE_VAT>
+    <HEUREKA_CPC>10</HEUREKA_CPC>
+    <MANUFACTURER>CZ-FIN</MANUFACTURER>
+    <CATEGORYTEXT>Obchod | Služby</CATEGORYTEXT>
+    <PRODUCTNO>FinPERSONAL01</PRODUCTNO>
+    <PARAM>
+      <PARAM_NAME>Trvanie</PARAM_NAME>
+      <VAL>rok</VAL>
+    </PARAM>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>FinPREMIUM</ITEM_ID>
+    <PRODUCTNAME>Licence Fin PREMIUM na jeden rok používaní</PRODUCTNAME>
+    <PRODUCT>Licence Fin PREMIUM</PRODUCT>
+    <DESCRIPTION>Live Monitoring médií, Denný Monitoring médií, Mesačný Monitoring tisku, informace z katalogu firem, CSV datasety, Počet užívateľov: 5</DESCRIPTION>
+    <URL>https://cz-fin.com/Premium</URL>
+    <PRICE_VAT>39999</PRICE_VAT>
+    <HEUREKA_CPC>10</HEUREKA_CPC>
+    <MANUFACTURER>CZ-FIN</MANUFACTURER>
+    <CATEGORYTEXT>Obchod | Služby</CATEGORYTEXT>
+    <PRODUCTNO>FinPREMIUM01</PRODUCTNO>
+    <PARAM>
+      <PARAM_NAME>Trvanie</PARAM_NAME>
+      <VAL>rok</VAL>
+    </PARAM>
+  </SHOPITEM>
+  <SHOPITEM>
+    <ITEM_ID>FinENTERPRISE</ITEM_ID>
+    <PRODUCTNAME>Licence Fin ENTERPRISE na jeden rok používaní</PRODUCTNAME>
+    <PRODUCT>Licence Fin ENTERPRISE</PRODUCT>
+    <DESCRIPTION>Live Monitoring médií, Denný Monitoring médií, Mesačný Monitoring tisku, informace z katalogu firem, CSV datasety, Neomezený počet užívateľov</DESCRIPTION>
+    <URL>https://cz-fin.com/ENTERPRISE</URL>
+    <PRICE_VAT>199999</PRICE_VAT>
+    <HEUREKA_CPC>10</HEUREKA_CPC>
+    <MANUFACTURER>CZ-FIN</MANUFACTURER>
+    <CATEGORYTEXT>Obchod | Služby</CATEGORYTEXT>
+    <PRODUCTNO>FinENTERPRISE01</PRODUCTNO>
+    <PARAM>
+      <PARAM_NAME>Trvanie</PARAM_NAME>
+      <VAL>rok</VAL>
+    </PARAM>
+  </SHOPITEM>
+</SHOP>

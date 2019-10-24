@@ -14,7 +14,7 @@
 }
 
 
-.free, .premium, .ultimate{
+.free, .premium, .ultimate, .enterprise{
     text-align:center;
 }
 .free {
@@ -26,6 +26,10 @@
 }
 .ultimate{
     background: #B8EDC8;
+    cursor:pointer;
+}
+.enterprise{
+    background: #f266f5;
     cursor:pointer;
 }
 /*
@@ -40,3 +44,12 @@
 }
 
 /**/
+
+.darken1{
+ box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .1);
+}
+.darken2{
+ box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .3);
+ color: white;
+ font-weight:bold;
+}

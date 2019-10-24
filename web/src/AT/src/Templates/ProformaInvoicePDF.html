@@ -1,0 +1,151 @@
+<style>
+th, td{
+ vertical-align:top;
+}
+</style>
+<h1>Zálohová faktura č. {{vs}}</h1>
+<table style="width:100%">
+    <tr>
+        <td style="border:2px solid gray; padding: 20px; width:50%; vertical-align: top">
+            <h2>Vystavitel</h2>
+            <table style="width:100%">
+                <tr>
+                    <th style="text-align:left; width:30%">Společnost</th>
+                    <td>Scholtz &amp; Company, j.s.a.</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">IČO</th>
+                    <td>SK 51 882 272</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">DIČ</th>
+                    <td>2120828105</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left"></th>
+                    <td>společnost není platcem DPH</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left; vertical-align:top">Sídlo</th>
+                    <td>Švabinského 21, 851 01 Bratislava</td>
+                </tr>
+                <tr>
+                    <th style="height:50px"/>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Variabilný symbol</th>
+                    <td>
+                        <b>{{vs}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Specifiký symbol</th>
+                    <td>
+                        <b>{{ss}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Bankový účet</th>
+                    <td>
+                        <b>2801709852 / 2010</b>
+                    </td>
+                </tr>
+            </table>
+
+
+        </td>
+        <td style="border:2px solid gray; padding: 20px; width:50%; vertical-align: top">
+            <h2>Odberatel</h2>
+
+{{#client}}
+
+            <table style="width:100%">
+{{#name}}<tr>
+                    <th style="text-align:left; width:30%">Společnost</th>
+                    <td>{{name}}</td>
+                </tr>{{/name}}
+{{#ico}}<tr>
+                    <th style="text-align:left">IČO</th>
+                    <td>{{ico}}</td>
+                </tr>{{/ico}}
+{{#dic}}<tr>
+                    <th style="text-align:left">DIČ</th>
+                    <td>{{dic}}</td>
+                </tr>{{/dic}}
+{{#ulica}}<tr>
+                    <th style="text-align:left">Ulica</th>
+                    <td>{{ulica}}</td>
+                </tr>{{/ulica}}
+{{#ulica2}}<tr>
+                    <th style="text-align:left"/>
+                    <td>{{ulica2}}</td>
+                </tr>{{/ulica2}}
+{{#psc}}<tr>
+                    <th style="text-align:left">PSČ</th>
+                    <td>{{psc}}</td>
+                </tr>{{/psc}}
+{{#mesto}}<tr>
+                    <th style="text-align:left">Mesto</th>
+                    <td>{{mesto}}</td>
+                </tr>{{/mesto}}
+{{#stat}}<tr>
+                    <th style="text-align:left">Štát</th>
+                    <td>{{stat}}</td>
+                </tr>{{/stat}}
+{{#ucet}}<tr>
+                    <th style="text-align:left">Bankový účet</th>
+                    <td>{{ucet}}</td>
+                </tr>{{/ucet}}
+{{#bic}}<tr>
+                    <th style="text-align:left">BIC</th>
+                    <td>{{bic}}</td>
+                </tr>{{/bic}}
+            </table>
+
+{{/client}}
+
+        </td>
+    </tr>
+</table>
+<br/>
+
+<table style="width:100%;border:2px solid gray; padding: 20px; vertical-align: top">
+    <thead>
+        <tr>
+            <th style="text-align:left">
+                <h2>Položky faktury</h2>
+            </th>
+        </tr>
+        <tr>
+            <th style="text-align:left">Položka</th>
+            <th style="text-align:right">Množstvo</th>
+            <th style="text-align:right">Jedn. Cena</th>
+            {{#hasd}}
+            <th style="text-align:right">Sleva</th>
+            <th style="text-align:right">Celková cena</th>
+            {{/hasd}}
+            {{^hasd}}
+            <th style="text-align:right">Celková cena</th>
+            {{/hasd}}
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+            {{n}}
+            </td>
+            <td style="text-align:right">1</td>
+            <td style="text-align:right">{{a}}</td>
+            {{#hasd}}
+            <td style="text-align:right">{{d}}</td>
+            <td style="text-align:right">{{ta}}</td>
+            {{/hasd}}
+            {{^hasd}}
+            <td style="text-align:right">{{a}}</td>
+            {{/hasd}}
+        </tr>
+    </tbody>
+</table>
+
+<p style="text-align:center">Uhraďte prosím čiastku {{ta}} na bankový účet 2801709852 / 2010. Po úhrade Vám vystavíme riadnu faktúru.</p>

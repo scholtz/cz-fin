@@ -18,10 +18,12 @@ $firma2nace = [];
 echo "\nidem fetchnut data_firmy_ares02_list_core";
 $res = DB::qb("data_firmy_ares02_list_core",["cols"=>["ico","nace"]]);
 $i = 0;
+$cc = DB::num_rows($res);
+
 while($row=DB::f($res)){
     $i++;
-    if($i%100==1) echo ".";
-	if($i%10000==1) echo "\n$i/$cc/".date("c")."";
+    if($i%100==0) echo ".";
+	if($i%10000==0) echo "\n$i/$cc/".date("c")."";
     if(strlen($row["nace"])==5){
         $row["nace"] = substr($row["nace"],0,4);
     }
@@ -34,18 +36,33 @@ while($row=DB::f($res)){
         $nacedb = DB::gr("sknace",["id4"=>$nacedb["parent"]]);
     }
 }
-echo "\nidem spracovat nace2firma";
 $nace2firma = [];
 $counter = [];
 $i = 0;
-$res = DB::qb($ratingtable,["cols"=>["id2","clear","obchodnifirma"],"order"=>["rating"=>"desc"]]);
+
+$ratingram = [];
+echo "\nidem fetchnut $ratingtable";
+$res = DB::qb($ratingtable);
+$i = 0;
+$cc = DB::num_rows($res);
+while($row=DB::f($res)){
+    $i++;
+    if($i%100==0) echo ".";
+	if($i%10000==0) echo "\n$i/$cc/".date("c")."";
+    $ratingram[$row["id2"]] = $row;
+}
+
+$i = 0;
+echo "\nidem spracovat nace2firma";
+$res = DB::qb($ratingtable,["cols"=>["id2"],"order"=>["rating"=>"desc"]]);
+$cc = DB::num_rows($res);
 while($row=DB::f($res)){
     if(isset($firma2nace[$row["id2"]]))
     foreach($firma2nace[$row["id2"]] as $nace=>$t){
         
         $i++;
-        if($i%100==1) echo ".";
-        if($i%10000==1) echo "\n$i/$cc/".date("c")."";
+        if($i%100==0) echo ".";
+        if($i%10000==0) echo "\n$i/$cc/".date("c")."";
         $counter[$nace]++;
         
         if(!isset($nace2firma[$nace])) $nace2firma[$nace] = [];
@@ -58,7 +75,13 @@ $config["cols"][$colname="data"]["type"] = "text";
 $config["cols"][$colname="counter"]["type"] = "int";
 
 foreach($nace2firma as $nace=>$data){
-    //$nacedb = DB::gr("sknace",["id4"=>$nace]);
+    
+    foreach($data as $k=>$v){
+        if(isset($ratingram[$v["id2"]])){
+            $data[$k] = $ratingram[$v["id2"]];
+        }
+    }
+    
     DB::u($nace2firmatable,$nace,["data"=>base64_encode(json_encode($data)),"counter"=>$counter[$nace]],$config);
     $config = false;
 }

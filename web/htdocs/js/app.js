@@ -6,4 +6,7 @@ $(document).ready(function(){
     $(".ultimate").on("click",function(){
         document.location = '/Ultimate';
     });
+    $(".enterprise").on("click",function(){
+        document.location = '/Enterprise';
+    });
 });

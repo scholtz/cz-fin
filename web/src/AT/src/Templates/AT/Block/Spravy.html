@@ -1,0 +1,54 @@
+<form class="form-inline"  method="post" action="/Spravy/">
+    <div class="col-md-12" style="padding: 1em 1em 0 1em">
+        <a class="btn {{#is7d}}btn-info btn-xs{{/is7d}}{{^is7d}}btn-light btn-xs btn-outline-info{{/is7d}} float-right" style="margin:2px" href="/Spravy/t=w">7D</a>
+        <a class="btn {{#is24h}}btn-info btn-xs{{/is24h}}{{^is24h}}btn-light btn-xs btn-outline-info{{/is24h}} float-right" style="margin:2px" href="/Spravy">24H</a>
+        <a class="btn {{#is12h}}btn-info btn-xs{{/is12h}}{{^is12h}}btn-light btn-xs btn-outline-info{{/is12h}} float-right" style="margin:2px" href="/Spravy/t=12h">12H</a>
+        <a class="btn {{#is3h}}btn-info btn-xs{{/is3h}}{{^is3h}}btn-light btn-xs btn-outline-info{{/is3h}} float-right" style="margin:2px" href="/Spravy/t=3h">3H</a>
+        <a class="btn {{#is1h}}btn-info btn-xs{{/is1h}}{{^is1h}}btn-light btn-xs btn-outline-info{{/is1h}} float-right" style="margin:2px" href="/Spravy/t=1h">1H</a>
+        
+        <h1>Monitoring médií</h1>
+        <!-- GENERATED AT: {{Time}} -->
+    </div>
+    
+    
+    <div class="input-group col-md-12">
+      <input type="text" class="form-control" name="text" placeholder="Vyhledat text" value="{{Term}}">
+      <button type="submit" class="btn btn-outline-primary mb-2">Vyhledat</button>
+    </div>
+</form>
+
+{{#Keywords.0}}
+<div class="col-12" id="keywords">
+{{#Keywords}} {{{html}}} . {{/Keywords}}
+
+<label for="keywords" class="col-form-label">Legenda: Velikost písma znamená četnost slov za sledované období. Barva více do <span style="color:#00ff00">světle zelena</span> znamená čerstvá novinka, a <span style="color:#ff0000">světlo červena</span> - novinka která se vyskytovala v období tense před sledovaným obdobím a už se nevyskytuje ve sledovaném období. Velké tmavě <span style="color: #008800">zelené písmo</span> znamená novinku která je důležitá a je stále aktuální.
+</label>
+<div>
+</div>
+{{/Keywords.0}}
+{{#News.0}}
+<div class="col-12">
+{{#Keywords.0}}
+    <h2>Aktuální zprávy</h2>
+{{/Keywords.0}}
+{{^Keywords.0}}
+    <h2>{{Term}}</h2>
+{{/Keywords.0}}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-sm table-bordered">
+        <thead>
+        <tr>
+        <th>Zdroj</th>
+        <th>Čas</th>
+        <th>Nadpis</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#News}}
+        <tr><td>{{Source}}</td><td>{{Time}}</td><td><a target="_blank" href="{{web}}" lang="{{lang}}">{{headline}}</a></td></tr>
+        {{/News}}
+        </tbody>
+        </table>
+    </div>
+</div>
+{{/News.0}}

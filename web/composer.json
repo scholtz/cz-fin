@@ -24,6 +24,9 @@
   , "require": {
         "scholtz/async-web": "dev-master",
 		"scholtz/bootstrap-php" : "dev-master",
-		"mustache/mustache" : "~2.5"
+		"mustache/mustache" : "~2.5",
+        "endroid/qr-code": "^3.5",
+        "mpdf/mpdf": "*",
+        "gopay/payments-sdk-php": "^1.4"
     }
 }
