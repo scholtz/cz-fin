@@ -47,3 +47,47 @@
 "User Type","Typ uživatele"
 "Standard","Standardní"
 "Admin - Can manage users","Admin - může spravovat uživatele"
+"%name% Vám poslal slevový kód","%name% Vám poslal slevový kód"
+Licence,Licence,/AT/src/Block/Header.php
+"Monitoring stats","Statistiky monitoringu",/AT/src/Block/Header.php
+Kupóny,Kupóny,/AT/src/Block/Header.php
+"Monitoring LIVE","Monitoring LIVE",/AT/src/Block/Header.php
+"Monitoring DAY","Monitoring DAY",/AT/src/Block/Header.php
+"Monitoring MONTH","Monitoring MONTH",/AT/src/Block/Header.php
+"News primary source config","News primary source config",/AT/src/Block/Header.php
+"News Config","News Config",/AT/src/Block/Header.php
+"HTML2RSS Config","HTML2RSS Config",/AT/src/Block/Header.php
+"Missed news","Minuté správy",/AT/src/Block/Header.php
+"Monitoring médií LIVE","Monitoring médií LIVE",/AT/src/Block/Header.php
+"Monitoring médií - Denný report","Monitoring médií - Denný report",/AT/src/Block/Header.php
+"Monitoring médií - Mesačný report","Monitoring médií - Mesačný report",/AT/src/Block/Header.php
+"Nastav avatar","Nastav avatar",/AT/src/Block/Header.php
+Bonus,Bonus,/AT/src/Block/Header.php
+"Fakturační údaje","Fakturační údaje",/AT/src/Block/Header.php
+"Uživatelské nastavení","Uživatelské nastavení",/AT/src/Block/Header.php
+Odhlášení,Odhlášení,/AT/src/Block/Header.php
+"Monitoring médií","Monitoring médií",/AT/src/Block/Header.php
+Ceník,Ceník,/AT/src/Block/Header.php
+Statistiky,Statistiky,/AT/src/Block/Header.php
+"Statistiky dat","Statistiky dat",/AT/src/Block/Header.php
+"Seznam použitých datových zdrojů","Seznam použitých datových zdrojů",/AT/src/Block/Header.php
+"Název nebo IČO společnosti","Název nebo IČO společnosti",/AT/src/Block/Header.php
+Vyhledat,Vyhledat,/AT/src/Block/Header.php
+"Prehled činností","Prehled činností",/AT/src/Block/Header.php
+"Kategorie činností","Kategorie činností",/AT/src/Block/Nace.php
+"Companies in this category","Společnosti v této kategori",/AT/src/Block/Nace.php
+"Firma","Firma",/AT/src/Block/Nace.php
+"Rating","Rating",/AT/src/Block/Nace.php
+"Zaměstnanci","Zaměstnanci",/AT/src/Block/Nace.php
+"Web","Web",/AT/src/Block/Nace.php
+"Tel","Tel",/AT/src/Block/Nace.php
+"Email","Email",/AT/src/Block/Nace.php
+"Vyžaduje se licence","Vyžaduje se licence",/AT/src/Block/Nace.php
+"Vyžaduje se min Fin PERSONAL licence","Vyžaduje se min Fin PERSONAL licence",/AT/src/Block/Nace.php
+
+"Statistiky dat - naše datové sady","Statistiky dat - naše datové sady"
+"Firem z DB ARES: %num%","Firem z DB ARES: %num%"
+"Spolu: %num%","Spolu: %num%"
+"ICO s NACE","ICO s NACE"
+"Spracovaná pôda","Spracovaná pôda"
+"Počet spracovaných parciel: ","Počet spracovaných parciel: "

@@ -1,13 +1,14 @@
 <h1>Zakoupení licence</h1>
 {{{Promo}}}
-<h2>Platba bankovým prevodem</h2>
 <p>
-<a class="btn btn-xs btn-light float-right" href="/ApplyBonus/type={{type}}" >Použít kupón</a>
-<a class="btn btn-xs btn-light float-right" href="/ProformaInvoice/type={{type}}/vs={{VS}}/ss={{SS}}/a={{Amount}}/c={{Currency}}/ta={{TotalAmount}}/d={{Discount}}/n={{Note}}" >Odeslat zálohovou fakturu</a>
+<a class="btn btn-xs btn-light float-right m-1" href="/ApplyBonus/type={{type}}" >Použít kupón</a>
+<a class="btn btn-xs btn-light float-right m-1" href="/ProformaInvoice/OrderId={{OrderId}}/Send=1" >Odeslat zálohovou fakturu</a>
 
-Po přijetí platby Vám vystavíme fakturu.</p>
+{{#Note}}<h3>{{Note}}</h3>{{/Note}}
+
+<a href="/ProformaInvoice/OrderId={{OrderId}}">Tu</a> si můžete stáhnout zálohovou fakturu. Po přijetí platby Vám vystavíme řádnou fakturu.</p>
+
 <table class="table">
-
 {{#HasDiscount}}
 
 <tr><th>Částka:</th><td>{{Amount}} {{Currency}}</td></tr>
@@ -21,13 +22,13 @@ Po přijetí platby Vám vystavíme fakturu.</p>
 {{/HasDiscount}}
 {{#GoPayAllowedUser}}
 <tr><th>Zaplatit cez GoPay:</th><td>
-<a class="btn btn-xs btn-light" href="/GoPay/type={{type}}/vs={{VS}}/ss={{SS}}/a={{Amount}}/c={{Currency}}/ta={{TotalAmount}}/d={{Discount}}/n={{Note}}" ><img src="/img/gopay.png" title="Zaplatit cez GoPay" alt="Zaplatit cez GoPay"></a>
+<a class="btn btn-xs btn-light" href="/GoPay/OrderId={{OrderId}}" ><img src="/img/gopay.png" title="Zaplatit cez GoPay" alt="Zaplatit cez GoPay"></a>
 
-<a class="btn btn-xs btn-light" href="/GoPay/paymenttype=card/type={{type}}/vs={{VS}}/ss={{SS}}/a={{Amount}}/c={{Currency}}/ta={{TotalAmount}}/d={{Discount}}/n={{Note}}" >Kartou</a>
+<a class="btn btn-xs btn-light" href="/GoPay/paymenttype=card/OrderId={{OrderId}}" >Kartou</a>
 |
-<a class="btn btn-xs btn-light" href="/GoPay/paymenttype=bank/type={{type}}/vs={{VS}}/ss={{SS}}/a={{Amount}}/c={{Currency}}/ta={{TotalAmount}}/d={{Discount}}/n={{Note}}" >Bankovým prevodem</a>
+<a class="btn btn-xs btn-light" href="/GoPay/paymenttype=bank/OrderId={{OrderId}}" >Bankovým prevodem</a>
 |
-<a class="btn btn-xs btn-light" href="/GoPay/paymenttype=bitcoin/type={{type}}/vs={{VS}}/ss={{SS}}/a={{Amount}}/c={{Currency}}/ta={{TotalAmount}}/d={{Discount}}/n={{Note}}" >Bitcoinom</a>
+<a class="btn btn-xs btn-light" href="/GoPay/paymenttype=bitcoin/OrderId={{OrderId}}" >Bitcoinom</a>
 
 </td></tr>
 {{/GoPayAllowedUser}}
@@ -36,4 +37,30 @@ Po přijetí platby Vám vystavíme fakturu.</p>
 {{#Name}}<tr><th>Poznámka:</th><td>{{Note}}</td></tr>{{/Name}}
 <tr><th>Zaplatit na účet:</th><td>{{Account}}</td></tr>
 <tr><th>QR Platby</th><td><img src="data:image/png;base64,{{QRB64}}" title="{{QRCode}}" class="img-thumbnail" width="200px"></td></tr>
+<tr><th>Nastavení měny</th><td>
+  <form method="post" action="/Buy">
+    <div class="input-group mb-3">
+      <select class="form-control" name="currency">
+      {{#Currencies}}<option value="{{Value}}"{{Selected}}>{{Name}}</option>{{/Currencies}}
+      </select>
+      <div class="input-group-append">
+        <input type="submit" class="btn btn-outline-primary" type="button" value="Vybrat">
+      </div>
+    </div>
+  </form>
+
+</td></tr>
+<tr><th>Nastavení fakturace</th><td>
+  <form method="post" action="/Buy">
+    <div class="input-group mb-3">
+      <select class="form-control" name="period">
+      {{#Periods}}<option value="{{Value}}"{{Selected}}>{{Name}}</option>{{/Periods}}
+      </select>
+      <div class="input-group-append">
+        <input type="submit" class="btn btn-outline-primary" type="button" value="Vybrat">
+      </div>
+    </div>
+  </form>
+
+</td></tr>
 </table>

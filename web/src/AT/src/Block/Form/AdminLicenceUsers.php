@@ -8,6 +8,8 @@ use AsyncWeb\Security\Auth;
 use AsyncWeb\DB\DB;
 
 class AdminLicenceUsers extends LicenceUsers{
+    protected $requiresAuthenticatedUser = true;
+    protected $requiresAllGroups = ["admin"];
     
     public function verifyRights(){
         

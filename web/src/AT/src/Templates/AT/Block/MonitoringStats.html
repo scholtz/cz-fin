@@ -1,0 +1,18 @@
+<div class="container">
+<h1>Statistika monitoringu médií za posl. 7 dní</h1>
+<div class="row">
+{{#Stats}}
+
+<table class="col-md-4">
+<thead><tr><th>Médium {{Lang}}</th><th>Počet článků</th></thead>
+<tbody>
+{{#Sources}}
+<tr><td>{{Domain}}</td><td>{{Count}}</td></tr>
+{{/Sources}}
+
+</tbody>
+</table>
+
+{{/Stats}}
+</div>
+</div>

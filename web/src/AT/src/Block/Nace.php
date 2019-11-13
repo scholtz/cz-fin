@@ -5,6 +5,7 @@ use AsyncWeb\Frontend\URLParser;
 use AsyncWeb\DB\DB;
 
 use AsyncWeb\Text\Texts;
+use AsyncWeb\System\Language;
 
 class Nace extends \AsyncWeb\Frontend\Block{
 	
@@ -14,23 +15,39 @@ class Nace extends \AsyncWeb\Frontend\Block{
         $currentNace = DB::gr("sknace",["id5cz"=>$current]);
         if(!$currentNace){
             $ret .= '<div class="container">';
-            $ret = "<h1>Kategorie činností</h1>";
+            $ret = "<h1>".Language::get("Kategorie činností")."</h1>";
             $res = DB::g("sknace",["idLevel"=>"1"]);
             $i = -1;
             while($row=DB::f($res)){
                 if($row["id3"] == "T") continue;
                 $i++;
-                $lower = mb_strtolower($row["CZ_text"]);
+                
+                $text = $row["CZ_text"];
+                if(!$text) $text = $row["SK_text"];
+                if(!$text) $text = $row["EN_text"];
+                switch(substr(Language::getLang(),0,2)){
+                    case "sk":
+                    if($row["SK_text"]){
+                        $text = $row["SK_text"];
+                    }
+                    break;
+                    case "en":
+                    if($row["EN_text"]){
+                        $text = $row["EN_text"];
+                    }
+                    break;
+                }
+                $lower = mb_strtolower($text);
                 $content = explode(";",$lower);
-                $text = "";
+                $text1= "";
                 foreach($content as $item){
                     $item = trim($item);
-                    $text .= mb_strtoupper(mb_substr($item,0,1)).mb_substr($item,1)."; ";
+                    $text1 .= mb_strtoupper(mb_substr($item,0,1)).mb_substr($item,1)."; ";
                 }
-                $text = trim($text);
-                $text = trim($text,";");
+                $text2 = trim($text1);
+                $text2 = trim($text2,";");
                 if($i%2 == 0) $ret.='<div class="row">';
-                $ret.='<div class="col-6"><img src="/img/nace-'.strtolower($row["id3"]).'.jpg" width="50" height="36" alt="'.$row["CZ_text"].'" title="'.$row["CZ_text"].'" /> <a href="/Nace/n='.$row["id5cz"].'">'.$text.'</a></div>';
+                $ret.='<div class="col-6"><img src="/img/nace-'.strtolower($row["id3"]).'.jpg" width="50" height="36" alt="'.$text.'" title="'.$row["CZ_text"].'" /> <a href="/Nace/n='.$row["id5cz"].'">'.$text2.'</a></div>';
                 if($i%2 == 1) $ret.='</div>';
             }
             $ret .= '</div>';
@@ -41,7 +58,7 @@ class Nace extends \AsyncWeb\Frontend\Block{
         
         if($_SERVER["REQUEST_URI"] != "/Nace/n=".$currentNace["id5cz"]){
             header("HTTP/1.1 301 Moved Permanently"); 
-            header("Location: https://www.cz-fin.com/Nace/n=".$currentNace["id5cz"]);
+            header("Location: https://".$_SERVER["HTTP_HOST"]."/Nace/n=".$currentNace["id5cz"]);
             exit();
         }
         
@@ -53,6 +70,20 @@ class Nace extends \AsyncWeb\Frontend\Block{
                 $text = $parent["CZ_text"];
                 if(!$text) $text = $parent["SK_text"];
                 if(!$text) $text = $parent["EN_text"];
+                
+                
+                switch(substr(Language::getLang(),0,2)){
+                    case "sk":
+                    if($parent["SK_text"]){
+                        $text = $parent["SK_text"];
+                    }
+                    break;
+                    case "en":
+                    if($parent["EN_text"]){
+                        $text = $parent["EN_text"];
+                    }
+                    break;
+                }
 
                 $ret.='<a class="btn btn-light float-right" href="/Nace/n='.$parent["id5cz"].'" title="'.$text.'">←</a>'."\n";
             }else{
@@ -66,9 +97,32 @@ class Nace extends \AsyncWeb\Frontend\Block{
         $currentcontent = $currentNace["CZ_content"];
         if(!$currentcontent) $currentcontent = $currentNace["SK_content"];
         if(!$currentcontent) $currentcontent = $currentNace["EN_content"];
+        
+        switch(substr(Language::getLang(),0,2)){
+            case "sk":
+            if($currentNace["SK_text"]){
+                $currenttext = $currentNace["SK_text"];
+            }
+            if($currentNace["SK_content"]){
+                $currentcontent = $currentNace["SK_content"];
+            }
+            break;
+            case "en":
+            if($currentNace["EN_text"]){
+                $currenttext = $currentNace["EN_text"];
+            }
+            if($currentNace["EN_content"]){
+                $currentcontent = $currentNace["EN_content"];
+            }
+            break;
+        }
+        
+        
         $res = DB::g("sknace",["parent"=>$currentNace["id4"]]);
         $i = -1;
         $ret.='<h1>'.$currenttext.'</h1><p>'.$currentcontent.'</p>';
+        \AsyncWeb\Frontend\BlockManagement::get("Content_HTMLHeader_Title")->changeData(array("title" => "$currenttext | CZ-FIN"));
+
         if(DB::num_rows($res)){
             $ret .= '<div class="card"><div class="card-header">Kategorie činností '.$currenttext.'</div><div class="list-group">';
             while($row=DB::f($res)){
@@ -76,6 +130,18 @@ class Nace extends \AsyncWeb\Frontend\Block{
                 $text = $row["CZ_text"];
                 if(!$text) $text = $row["SK_text"];
                 if(!$text) $text = $row["EN_text"];
+                
+                if(substr(Language::getLang(),0,2)=="en"){
+                    if($row["EN_text"]){
+                        $text = $row["EN_text"];
+                    }
+                }
+                if(substr(Language::getLang(),0,2)=="sk"){
+                    if($row["SK_text"]){
+                        $text = $row["SK_text"];
+                    }
+                }
+                
 
                 $counter = DB::qbr("data_czfin_nace2firma",["where"=>["id2"=>$row["id4"]],"cols"=>["counter"]]);
                 
@@ -91,7 +157,7 @@ class Nace extends \AsyncWeb\Frontend\Block{
         $licence = \AT\Classes\Licence::highestUserLicence();
         if(count($data) > 0){
             
-            $ret .= '<br><div class="card"><div class="card-header">Firmy</div><table class="table"><thead><tr><th>Firma</th><th>Rating</th><th>Zaměstnanci</th><th>Web</th><th>Tel</th><th>Email</th></tr></thead><tbody>';
+            $ret .= '<br><div class="card"><div class="card-header">'.Language::get("Companies in this category").'</div><table class="table"><thead><tr><th>'.Language::get("Firma").'</th><th>'.Language::get("Rating").'</th><th>'.Language::get("Zaměstnanci").'</th><th>'.Language::get("Web").'</th><th>'.Language::get("Tel").'</th><th>'.Language::get("Email").'</th></tr></thead><tbody>';
             foreach($data as $firma){
                 //$ret.= '<!-- '.print_r($firma,true).' -->';
                 $ret.='<tr><td><a class="btn btn-light btn-xs btn-outline-primary" href="/Firma/ico='.$firma["id2"].'/n='.$firma["clear"].'">'.($firma["obchodnifirma"] ?? $firma["clear"]).'</a></td>';
@@ -112,7 +178,7 @@ class Nace extends \AsyncWeb\Frontend\Block{
                     if($licence){
                         $ret.='<td><a href="callto:'.$firma["tel"].'">'.$firma["tel"].'</a></td>';
                     }else{
-                        $ret.='<td><a href="/Personal"><img src="/img/premium.jpg" alt="Vyžaduje se licence" title="Vyžaduje se min Fin PERSONAL licence" /></a></td>';
+                        $ret.='<td><a href="/Personal"><img src="/img/premium.jpg" alt="'.Language::get("Vyžaduje se licence").'" title="'.Language::get("Vyžaduje se min Fin PERSONAL licence").'" /></a></td>';
                     }
                 }else{
                     $ret.='<td></td>';
@@ -122,7 +188,7 @@ class Nace extends \AsyncWeb\Frontend\Block{
                     if($licence){
                         $ret.='<td><a href="mailto:'.$firma["email"].'">'.$firma["email"].'</a></td>';
                     }else{
-                        $ret.='<td><a href="/Personal"><img src="/img/premium.jpg" alt="Vyžaduje se licence" title="Vyžaduje se min Fin PERSONAL licence" /></a></td>';
+                        $ret.='<td><a href="/Personal"><img src="/img/premium.jpg" alt="'.Language::get("Vyžaduje se licence").'" title="'.Language::get("Vyžaduje se min Fin PERSONAL licence").'" /></a></td>';
                     }
                 }else{
                     $ret.='<td></td>';

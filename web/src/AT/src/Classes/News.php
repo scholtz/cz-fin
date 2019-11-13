@@ -10,14 +10,20 @@ use AsyncWeb\Text\Texts;
 
 class News{
     
-    public function getAllNews($count){
+    public function getAllNews($count, $lang = "all"){
         $tables = [
-            "dev02fast.cz_spravy_texts_clean","dev02fast.sk_spravy_texts_clean","dev02fast.en_spravy_texts_clean",
+            "cz"=>"dev02fast.cz_spravy_texts_clean",
+            "sk"=>"dev02fast.sk_spravy_texts_clean",
+            "en"=>"dev02fast.en_spravy_texts_clean",
         ];
+        
+        if(isset($tables[$lang])){
+            $tables = [$lang=>$tables[$lang]];
+        }
         
         $allnewsByTime = [];
         $done = [];
-        foreach($tables as $table){
+        foreach($tables as $lang=>$table){
             $res = DB::qb($table,["limit"=>$count,"order"=>["time"=>"desc"]]);
             while($item = DB::f($res)){
                 $web = $item["web"];
@@ -35,14 +41,14 @@ class News{
                 $item["Source"] = $web;
                 
                 $arr = explode(".",$web);
-                switch($arr[count($arr)-1]){
+                switch($lang){
                     case "sk":
                         $item["lang"] = "sk";
                     break;
                     case "cz":
                         $item["lang"] = "cs";
                     break;
-                    case "default":
+                    default:
                         $item["lang"] = "en";
                     break;
                 }
@@ -65,6 +71,7 @@ class News{
         $tables = [
             "dev02fast.cs_word_combinations_1_out","dev02fast.cs_word_combinations_2_out","dev02fast.cs_word_combinations_3_out",
             "dev02fast.sk_word_combinations_1_out","dev02fast.sk_word_combinations_2_out","dev02fast.sk_word_combinations_3_out",
+            "dev02fast.en_word_combinations_1_out","dev02fast.en_word_combinations_2_out","dev02fast.en_word_combinations_3_out",
         ];
         
         $allnewsByTime = [];
@@ -124,7 +131,16 @@ class News{
         krsort($allnewsByTime);
         return $allnewsByTime;
     }
-    public function makeNewsPage($cty = "cz",$type="24h", $refresh = false, $maxWords = 150,$saveToCache = true,$processHistory=true){
+    public function makeNewsPage(   
+        $cty = "cz",
+        $type="24h", 
+        $refresh = false, 
+        $maxWords = 100,
+        $saveToCache = true,
+        $processHistory=true,
+        $from = null,
+        $until = null
+        ){
         $lang = "cs";
         if($cty == "sk") $lang = $cty;
         if($cty == "en") $lang = $cty;
@@ -134,29 +150,35 @@ class News{
             case "1h":
             $t = strtotime("-1 hours");
             $min = 20;
+            $countMultiplier = 2;
                 break;
             case "3h":
             $t = strtotime("-3 hours");
+            $countMultiplier = 1.1;
             $min = 40;
                 break;
             case "12h":
             $t = strtotime("-12 hours");
+            $countMultiplier = 1;
             $min = 50;
                 break;
             case "w":
             $t = strtotime("-7 days");
             $min = 100;
+            $countMultiplier = 0.8;
                 break;
             default:
             $t = strtotime("-24 hours");
             $min = 100;
+            $countMultiplier = 0.9;
                 break;
         }
         
-        
+        if($cty == "cs") $cty = "cz";
         $f = "/dev/shm/$cty-fin-news-$type.html";
         $page = "/Spravy/";
-        if($cty == "sk") $page = "/Page:Spravy/";
+        if($cty == "sk") $page = "https://sk.cz-fin.com/Spravy/";
+        //if($lang == "en") $page = "/Spravy/lang=en-US/";
         
         
         if(!$refresh){
@@ -169,14 +191,27 @@ class News{
                 }/**/
             }
         }
+        //echo $f;
         require_once("/cron/watchdogsk/ProcessHtml2Text.php");
         
-        
-        
-        $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array(
-            "order"=>array("od"=>"desc"),
-            "where"=>[["col"=>"time","op"=>"gt","value"=>$t]],
-        ));
+        //echo("refresh");
+        if($from && $until){
+            $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array(
+                "order"=>array("time"=>"desc"),
+                "where"=>[
+                    ["col"=>"time","op"=>"gt","value"=>$from],
+                    ["col"=>"time","op"=>"lt","value"=>$until]
+                                        
+                    ],
+            ));
+
+        }else{
+            $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array(
+                "order"=>array("od"=>"desc"),
+                "where"=>[["col"=>"time","op"=>"gt","value"=>$t]],
+            ));
+            
+        }
         $count = DB::num_rows($res);
         if($count < $min){
             $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array(
@@ -225,7 +260,8 @@ class News{
 
         $old = [];
         if($processHistory){
-            $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array("limit"=>round($count*1.5),"offset"=>$count,"order"=>array("od"=>"desc")));
+            //var_dump(round($count*$countMultiplier));
+            $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array("limit"=>round($count*$countMultiplier),"offset"=>$count,"order"=>array("od"=>"desc")));
             while($row=\AsyncWeb\DB\DB::f($res)){
                  $result = \ProcessHtml2Text::ProcessWords($row["web"],$row["text"],$lang,true,true);
                  foreach($result as $k=>$v){
@@ -256,7 +292,11 @@ class News{
         $weights = [];
         
         //if(URLParser::v("debug") == "1"){
-        $wc = DB::qbr("dev02fast.${lang}_spravy_texts_wordcount",["where"=>$w = ["type"=>"month","date"=>(date("Y-m",strtotime("-1 months")))],"cols"=>["clear"]]);
+        $month = date("m") - 1;    
+        $date = strtotime(date("Y")."-".$month);
+        $date = date("Y-m",$date);
+        //echo "current date: $date\n";
+        $wc = DB::qbr("dev02fast.${lang}_spravy_texts_wordcount",["where"=>$w = ["type"=>"month","date"=>$date],"cols"=>["clear"]]);
         $clear = gzuncompress($wc["clear"]);
         
         $clear = json_decode($clear,true);
@@ -301,12 +341,14 @@ class News{
         $sort2=[];
         $size = [];
         $s = 45;
+        $div = round($maxWords / 10);
+        $div = max(1,$div);
         foreach($sort as $k=>$v){
             $n++;
             if($n > $maxWords) break;
             $sort2[$k] = $v;
             
-            if($n%20==0) $s = round($s / 10 * 8.5);
+            if($n%$div==0) $s = round($s / 10 * 8.5);
             $size[$k] = $s;
         }
         ksort($sort2,SORT_STRING | SORT_FLAG_CASE);

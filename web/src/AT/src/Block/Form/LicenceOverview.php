@@ -18,7 +18,6 @@ class LicenceOverview extends \AsyncWeb\DefaultBlocks\Form{
         
 	}
 	public function initTemplate(){
-        \AsyncWeb\View\MakeDBView::$repair = true;
         $licences = [];
 		$this->formSettings = array(
             "uid"=>"licences",

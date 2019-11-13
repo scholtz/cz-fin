@@ -7,6 +7,7 @@ use AsyncWeb\DB\DB;
 use AsyncWeb\Text\Texts;
 
 class GoPay extends ProformaInvoice{
+    protected $requiresAuthenticatedUser = true;
     public function postProcess(){
         
         // full configuration
@@ -20,6 +21,11 @@ class GoPay extends ProformaInvoice{
             'timeout' => 60
         ]);
         
+        if(!\AsyncWeb\Objects\User::getEmailOrId()){
+            \AsyncWeb\Text\Msg::mes(\AsyncWeb\System\Language::get("Před provedením platby se prosím zaregistrujte abychom mohli spolehlivě spárovat Vaši platbu s Vaším účtem. Děkujeme"));
+            $this->template = " ";
+            return true; // sprocesovana
+        }
         
         if($email = \AsyncWeb\Objects\User::getEmailOrId()){
             $client = DB::gr("user_invoicedata",["email"=>\AsyncWeb\Objects\User::getEmailOrId()]);
@@ -32,8 +38,11 @@ class GoPay extends ProformaInvoice{
             
         }        
         
-        $amount = str_replace(" ","",str_replace(",",".",URLParser::v("ta")))*100;
+        $orderMgr = new \AT\Classes\Order();
+        $orderInfo = $orderMgr->getLastOrder();
+        $order = $orderMgr->getInvoiceData($orderInfo["id2"]);
         
+        $amount = $order["totalAmount"]*100;
         $paymentInfo = [
             'payer' => [
                 'allowed_payment_instruments' => [
@@ -58,24 +67,24 @@ class GoPay extends ProformaInvoice{
                 ]
             ],
             'amount' => $amount,
-            'currency' => \GoPay\Definition\Payment\Currency::CZECH_CROWNS,
-            'order_number' => URLParser::v("vs"),
-            'order_description' => URLParser::v("n"),
+            'currency' => strtoupper($order["currency"]),
+            'order_number' => $order["vs"],
+            'order_description' => $order["msg"],
             'items' => [
                 [
                     'type' => 'ITEM',
-                    'name' => URLParser::v("n"),
-                    'product_url' => 'https://www.cz-fin.com/'.ucfirst(URLParser::v("type")),
+                    'name' => $order["msg"],
+                    'product_url' => 'https://'.$_SERVER["HTTP_HOST"].'/'.ucfirst(URLParser::v("type")),
                     'amount' => $amount,
                     'count' => 1,
                 ],
             ],
             'additional_params' => [
-                ['name' => 'ss','value' => URLParser::v("ss"),],
+                ['name' => 'ss','value' => $order["ss"] ],
             ],
             'callback' => [
-                'return_url' => 'https://www.cz-fin.com/GoPayReturn',
-                'notification_url' => 'https://www.eshop.cz/GoPayCallback'
+                'return_url' => 'https://'.$_SERVER["HTTP_HOST"].'/GoPayReturn',
+                'notification_url' => 'https://'.$_SERVER["HTTP_HOST"].'/GoPayCallback'
             ],
             'lang' => \GoPay\Definition\Language::CZECH
                     
@@ -91,7 +100,7 @@ class GoPay extends ProformaInvoice{
         if(URLParser::v("paymenttype") == "card"){
             $paymentInfo['payer']['default_payment_instrument'] = \GoPay\Definition\Payment\PaymentInstrument::PAYMENT_CARD;
         }
-        
+        //var_dump($paymentInfo);exit;
         $response = $gopay->createPayment($paymentInfo);
         if ($response->hasSucceed()) {
             //echo "hooray, API returned {$response}";
@@ -100,7 +109,7 @@ class GoPay extends ProformaInvoice{
             exit;
         } else {
             \AsyncWeb\Text\Msg::err("oops, API returned {$response->statusCode}: {$response}");
-            header("Location: https://www.cz-fin.com/Buy/type=".URLParser::v("type"));
+            header("Location: https://".$_SERVER["HTTP_HOST"]."/Buy/type=".URLParser::v("type"));
             // errors format: https://doc.gopay.com/en/?shell#http-result-codes
             exit;
         }

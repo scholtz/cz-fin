@@ -11,6 +11,7 @@ class News extends \AsyncWeb\Frontend\Block{
     protected $requiresAllGroups = ["admin"=>"admin"];
 	public function init(){
         $lang = URLParser::v("lang");
+        if($lang == "cs") $lang = "cz";
         if(!$lang) $lang = "cz";
         $errcode = URLParser::v("errcode");
         if(!$errcode) $errcode = 8;

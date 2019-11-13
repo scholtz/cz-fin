@@ -8,6 +8,7 @@ use AsyncWeb\DB\DB;
 
 class HTML2RSS extends \AsyncWeb\DefaultBlocks\Form{
     protected $requiresAuthenticatedUser = true;
+    protected $requiresAllGroups = ["admin"];
 	public function initTemplate(){
         if(!\AsyncWeb\Objects\Group::is_in_group("admin")){
             return;

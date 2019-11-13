@@ -1,0 +1,77 @@
+"Basic authentication","Prihlásenie","Menu/Menu.php"
+"About","O nás","Menu/Menu.php"
+"Contact","Kontakt","Menu/Menu.php"
+"FAQ","Časté otázky","Menu/Menu.php"
+"Web requires authentication","Prihlásenie pomocou registrovaného užívateľa"
+"Gender","Pohlavie"
+"Male","Muž"
+"Female","Žena"
+"First name","Meno"
+"Last name","Priezvisko"
+"Registration","Registrácia"
+"Register","Zaregistrovať sa"
+"Basic user authentication","Prihlasovacie údaje pre cz-fin"
+"User Name","Email"
+"Password","Heslo"
+"Log in","Prihlásiť sa"
+"Recover password","Obnova hesla"
+"Your user name","Zadejte prosím Váš email"
+"Your password","Zadejte prosím heslo"
+"Recover lost password","Obnovte stratené heslo"
+"Your email address","Váš email"
+"Reset your password","Obnoviť heslo"
+"Wrong user or password!","Chybný email alebo heslo!"
+"Licence Type","Typ"
+"Licence Start","Aktívna od"
+"Licence End","Aktívna do"
+"Licence history","História Vašich licencií"
+"You do not have any active licence yet","Zatiaľ nemáte žiadnu aktívnu licenciu"
+"MF_insert","Vlož"
+"MF_update","Uprav"
+"MF_reset","Obnov formulár"
+"MF_delete","Vymaž"
+"iter_page","Prejsť na stránku"
+"Page","Stránka"
+"Number of items","Počet záznamov"
+"Generated in","Vygenerované za"
+"Item has been successfully updated","Položka bola úspešne upravená"
+"Deletion has been successfully commited","Odstránenie záznamu bolo úspešne vykonané"
+"New item has been successfully inserted","Nová položka bola úspešne vložená"
+"New item","Nový záznam"
+"Export to XML","Exportovať do XML",
+"Export to Excel","Exportovať do Excelu",
+"Export to HTML","Exportovať do HTML",
+"You have successfully registered. We have sent you credentials to your email address.","Úspešne ste sa zaregistrovali. Poslali sme Vám prihlasovacie údaje na Vašu emailovú adresu."
+"Licence Name","Licencia pre"
+"Users count","Počet používateľov"
+"User Type","Typ používateľa"
+"Standard","Štandardný"
+"Admin - Can manage users","Admin - môže spravovať užívateľov"
+"%name% Vám poslal slevový kód","%name% Vám poslal zľavový kód"
+Licence,Licence,/AT/src/Block/Header.php
+"Monitoring stats","Štatistiky monitoringu",/AT/src/Block/Header.php
+Kupóny,Kupóny,/AT/src/Block/Header.php
+"Monitoring LIVE","Monitoring LIVE",/AT/src/Block/Header.php
+"Monitoring DAY","Monitoring DAY",/AT/src/Block/Header.php
+"Monitoring MONTH","Monitoring MONTH",/AT/src/Block/Header.php
+"News primary source config","News primary source config",/AT/src/Block/Header.php
+"News Config","News Config",/AT/src/Block/Header.php
+"HTML2RSS Config","HTML2RSS Config",/AT/src/Block/Header.php
+"Missed news","Minuté správy",/AT/src/Block/Header.php
+"Monitoring médií LIVE","Monitoring médií LIVE",/AT/src/Block/Header.php
+"Monitoring médií - Denný report","Monitoring médií - Denný report",/AT/src/Block/Header.php
+"Monitoring médií - Mesačný report","Monitoring médií - Mesačný report",/AT/src/Block/Header.php
+"Nastav avatar","Nastav avatar",/AT/src/Block/Header.php
+Bonus,Bonus,/AT/src/Block/Header.php
+"Fakturační údaje","Fakturačné údaje",/AT/src/Block/Header.php
+"Uživatelské nastavení","Užívateľské nastavenia",/AT/src/Block/Header.php
+Odhlášení,Odhlásenie,/AT/src/Block/Header.php
+"Monitoring médií","Monitoring médií",/AT/src/Block/Header.php
+Ceník,Cenník,/AT/src/Block/Header.php
+Statistiky,Štatistiky,/AT/src/Block/Header.php
+"Statistiky dat","Štatistiky údajov",/AT/src/Block/Header.php
+"Seznam použitých datových zdrojů","Zoznam použitých dátových zdrojov",/AT/src/Block/Header.php
+"Název nebo IČO společnosti","Názov alebo IČO spoločnosti",/AT/src/Block/Header.php
+Vyhledat,Vyhľadať,/AT/src/Block/Header.php
+"Prehled činností","Prehľad podľa činností",/AT/src/Block/Header.php
+"Kategorie činností","Kategórie činností",/AT/src/Block/Nace.php

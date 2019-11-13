@@ -59,6 +59,7 @@ class PageBuilder{
                 "type"=>"db",
                 "multiplier"=>2,
                 "sum-col"=>"data-castka-s-dph",
+                "search-col"=>"data-ucel-platby",
                 "date-col"=>"data-date",
                 "date-col-stats"=>"od",
             ],
@@ -68,6 +69,7 @@ class PageBuilder{
                 "name"=>"Smlouvy",
                 "type"=>"db",
                 "multiplier"=>2,
+                "search-col"=>"data-popis",
                 "sum-col"=>"data-celkova-castka",
             ],
             
@@ -80,11 +82,13 @@ class PageBuilder{
                 "sum-col"=>"smlouva-hodnotaBezDph",
                 "date-col"=>"data-date",
                 "ico-col"=>"smlouvni-strana-ico",
+                "search-col"=>"data-smlouva-predmet-clear",
+                "search-table"=>"out.data_smlouvy_core",
             ],
             
             "devcz.data_mze_dpb_core"=>[
                 "context"=>"mze_vymery",    
-                "name"=>"Výmery poľnohospodárskych oblastí",
+                "name"=>"Výměry zemědělských oblastí",
                 "ico-col"=>"ico",
                 "date-col"=>"od",
                 "type"=>"db",
@@ -96,6 +100,7 @@ class PageBuilder{
                 "name"=>"Objednávky",
                 "type"=>"ram",
                 "sum-col"=>"data-celkova-castka",
+                "search-col"=>"data-popis",
                 "date-col-stats"=>"od",
             ],
             "devczfast.data_all_core_pokuty"=>[

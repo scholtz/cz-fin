@@ -8,6 +8,8 @@ use AsyncWeb\DB\DB;
 
 class NewsConfig extends \AsyncWeb\DefaultBlocks\Form{
     protected $requiresAuthenticatedUser = true;
+    protected $requiresAllGroups = ["admin"];
+
 	public function initTemplate(){
         if(!\AsyncWeb\Objects\Group::is_in_group("admin")){
             return;

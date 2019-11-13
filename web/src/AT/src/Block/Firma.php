@@ -3,7 +3,7 @@ namespace AT\Block;
 
 use AsyncWeb\Frontend\URLParser;
 use AsyncWeb\DB\DB;
-
+use AsyncWeb\System\Language;
 use AsyncWeb\Text\Texts;
 
 class Firma extends \AsyncWeb\Frontend\Block{
@@ -34,6 +34,14 @@ class Firma extends \AsyncWeb\Frontend\Block{
     }
 	public function initTemplate(){
         $ico = URLParser::v("ico");
+        
+        if(isset(\AT\Classes\BanList::$list[$ico])){
+            $this->template = '<div class="container"><h1>'.\AT\Classes\BanList::$list[$ico].'</h1><p>IČO: '.$ico.'</p><p>'.Language::get("Společnost si nepřeje zveřejňovat své informace").'</p>
+            <div class="alert alert-danger">'.Language::get("Společnosti které schovávají informace o svém podnikání i když v podstatě věci jsou tyto informace veřejné jsou podezřelé. Dejte si na takové společnosti velký pozor a při podnikání s nimi si silně ověřte zda jejich podnikatelská aktivita je legální.").'</div> 
+            </div>';
+            return;
+        }
+        
         $licence = \AT\Classes\Licence::highestUserLicence();
         if($licence){
             // if we are logged in, do not use cached website

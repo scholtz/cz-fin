@@ -15,7 +15,7 @@ class R extends \AsyncWeb\Frontend\Block{
                 \AsyncWeb\Storage\Session::set("ReferalCode",URLParser::v("c"));
             }
         }
-        header("Location: https://www.cz-fin.com/Buy/type=personal");
+        header("Location: https://".$_SERVER["HTTP_HOST"]."/Buy/type=personal");
         exit;
 	}
 }

@@ -8,6 +8,8 @@ use AsyncWeb\Security\Auth;
 use AsyncWeb\DB\DB;
 
 class AdminCoupons extends \AsyncWeb\DefaultBlocks\Form{
+    protected $requiresAuthenticatedUser = true;
+    protected $requiresAllGroups = ["admin"];
     
     public function verifyRights(){
         

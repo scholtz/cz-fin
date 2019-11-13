@@ -1,0 +1,88 @@
+"Basic authentication","Basic authentication","Menu/Menu.php"
+"About","About","Menu/Menu.php"
+"Contact","Contact","Menu/Menu.php"
+"FAQ","FAQ","Menu/Menu.php"
+"Web requires authentication","Web requires authentication"
+"Gender","Gender"
+"Male","Male"
+"Female","Female"
+"First name","First name"
+"Last name","Last name"
+"Registration","Registration"
+"Register","Register"
+"Basic user authentication","Basic user authentication"
+"User Name","Email"
+"Password","Password"
+"Log in","Log in"
+"Recover password","Recover password"
+"Your user name","Your user name"
+"Your password","Your password"
+"Recover lost password","Recover lost password"
+"Your email address","Your email address"
+"Reset your password","Reset your password"
+"Wrong user or password!","Wrong user or password!"
+"Licence Type","Licence Type"
+"Licence Start","Licence active from"
+"Licence End","Licence active until"
+"Licence history","Licence history"
+"You do not have any active licence yet","You do not have any active licence yet"
+"MF_insert","Insert"
+"MF_update","Edit"
+"MF_reset","Reset form"
+"MF_delete","Delete"
+"iter_page","Go to page"
+"Page","Page"
+"Number of items","Number of items"
+"Generated in","Generated in"
+"Item has been successfully updated","Item has been successfully updated"
+"Deletion has been successfully commited","Deletion has been successfully commited"
+"New item has been successfully inserted","New item has been successfully inserted"
+"New item","New item"
+"Export to XML","Export to XML",
+"Export to Excel","Export to Excel",
+"Export to HTML","Export to HTML",
+"You have successfully registered. We have sent you credentials to your email address.","You have successfully registered. We have sent you credentials to your email address."
+"Licence Name","Licence Name"
+"Users count","Users count"
+"User Type","User Type"
+"Standard","Standard"
+"Admin - Can manage users","Admin - Can manage users"
+"%name% Vám poslal slevový kód","%name% sent you discount code"
+Licence,License,/AT/src/Block/Header.php
+"Monitoring stats","Monitoring stats",/AT/src/Block/Header.php
+Kupóny,Discount codes,/AT/src/Block/Header.php
+"Monitoring LIVE","Monitoring LIVE",/AT/src/Block/Header.php
+"Monitoring DAY","Monitoring DAY",/AT/src/Block/Header.php
+"Monitoring MONTH","Monitoring MONTH",/AT/src/Block/Header.php
+"News primary source config","News primary source config",/AT/src/Block/Header.php
+"News Config","News Config",/AT/src/Block/Header.php
+"HTML2RSS Config","HTML2RSS Config",/AT/src/Block/Header.php
+"Missed news","Missed news",/AT/src/Block/Header.php
+"Monitoring médií LIVE","Monitoring médií LIVE",/AT/src/Block/Header.php
+"Monitoring médií - Denný report","Monitoring médií - Denný report",/AT/src/Block/Header.php
+"Monitoring médií - Mesačný report","Monitoring médií - Mesačný report",/AT/src/Block/Header.php
+"Nastav avatar","Set your avatar",/AT/src/Block/Header.php
+Bonus,Bonus,/AT/src/Block/Header.php
+"Fakturační údaje","Invoice details",/AT/src/Block/Header.php
+"Uživatelské nastavení","User settings",/AT/src/Block/Header.php
+Odhlášení,Logout,/AT/src/Block/Header.php
+"Monitoring médií","Media monitoring",/AT/src/Block/Header.php
+Ceník,Pricing,/AT/src/Block/Header.php
+Statistiky,Stats,/AT/src/Block/Header.php
+"Statistiky dat","Data stats",/AT/src/Block/Header.php
+"Seznam použitých datových zdrojů","List of data sources",/AT/src/Block/Header.php
+"Název nebo IČO společnosti","Name or company identifier",/AT/src/Block/Header.php
+Vyhledat,Search,/AT/src/Block/Header.php
+"Prehled činností","Companies by activities",/AT/src/Block/Header.php
+"Kategorie činností","Companies by activities",/AT/src/Block/Nace.php
+"Companies in this category","Companies with this activity",/AT/src/Block/Nace.php
+"Firma","Company",/AT/src/Block/Nace.php
+"Rating","Rating",/AT/src/Block/Nace.php
+"Zaměstnanci","Employees",/AT/src/Block/Nace.php
+"Web","Web",/AT/src/Block/Nace.php
+"Tel","Phone",/AT/src/Block/Nace.php
+"Email","Email",/AT/src/Block/Nace.php
+"Vyžaduje se licence","Licence is required",/AT/src/Block/Nace.php
+"Vyžaduje se min Fin PERSONAL licence","Minimum Fin PERSONAL license is required to show this information",/AT/src/Block/Nace.php
+
+"Statistiky dat - naše datové sady","Data statistics - our datasets"

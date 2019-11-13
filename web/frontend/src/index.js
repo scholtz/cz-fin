@@ -7,7 +7,8 @@ import './scss/app.scss';
 //import "./jquery/Timer.js";
 import "./jquery/app.js";
 import "./jquery/fb-pixel.js";
+import "./jquery/smartsupp.js";
+import "./jquery/fa.js";
 
 import 'bootstrap';
-
 import './css/style.css';

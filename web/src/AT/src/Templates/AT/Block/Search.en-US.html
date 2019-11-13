@@ -1,0 +1,129 @@
+<div class="card">
+
+    {{^HasLicence}}
+    <h1 class="card-header">Search in database of czech companies</h1>
+    <div class="card-body">
+        <form class="form-inline  justify-content-center" method="post" action="/Search/">
+            <div class="input-group col-md-12">
+              <input type="text" class="form-control" name="text" placeholder="Name or company identifier" value="{{Term}}">
+              <button type="submit" class="btn btn-outline-primary mb-2">Search</button>
+            </div>
+        </form>
+    </div>
+    {{/HasLicence}}
+    {{#HasLicence}}
+    <h1 class="card-header">Advance companies search</h1>
+    <div class="card-body">
+        <form class="justify-content-center" method="post" action="/Search/">
+            <div class="form-group row">
+              <label for="text" class="col-md-3 col-form-label">Name or company identifier</label>
+              <div class="col-md-9">
+                <input id="text" type="text" class="form-control" name="text" placeholder="Name or company identifier" value="{{Term}}">
+              </div>
+            </div>
+
+            <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+              <label for="nace" >Activity</label>
+              <select id="nace" class="form-control" name="nace">
+                <option disabled selected>Filter by NACE activity</option>
+                <option value="">No filter</option>
+                {{#Cinnosti}}
+                <option value="{{ID}}" {{#Selected}}selected{{/Selected}}>{{Name}}</option>
+                {{/Cinnosti}}
+              </select>
+            </div>
+            </div>
+            
+            <div class="col-md-4">
+            <div class="form-group">
+              <label for="size" >Company size</label>
+              <select id="size" class="form-control" name="size">
+                <option disabled selected>Filter by company size</option>
+                <option value="">No filter</option>
+                {{#Velkost}}
+                <option value="{{ID}}" {{#Selected}}selected{{/Selected}}>{{Name}}</option>
+                {{/Velkost}}
+              </select>
+            </div>
+            </div>
+            
+            <div class="col-md-4">
+            <div class="form-group">
+              <label for="kraj" >County</label>
+              <select id="kraj" class="form-control" name="kraj">
+                <option disabled selected>Filter by location</option>
+                <option value="">No filter</option>
+                {{#Kraje}}
+                <option value="{{ID}}" {{#Selected}}selected{{/Selected}}>{{Name}}</option>
+                {{/Kraje}}
+              </select>
+            </div>
+            </div>
+            
+            </div>
+            
+            
+
+          <button type="submit" class="btn btn-outline-primary mb-2">Search</button>
+        </form>
+    </div>
+    {{/HasLicence}}
+
+
+</div>
+
+{{#Firmy.0}}
+{{#HasLicence}}
+<div class="row">
+<div class="col-12" style="margin: 1em 0">
+    <a class="btn btn-light btn-outline-primary float-right" href="/Search/s={{Term}}/export=csv">Export to Excel</a>
+</div>
+</div>
+{{/HasLicence}}
+<table class="table table-sm">
+<thead><tr><th>Company</th><th class="text-center">Rating (best 100)</th><th>Size</th><th>Web</th><th>Phone</th><th>Email</th></thead>
+<tbody>
+{{#Firmy}}
+<tr>
+    <td>
+        <a class="btn btn-light form-control" href="/Firma/ico={{ICO}}/n={{clear}}">{{Name}}</a>
+    </td>
+    <td class="text-center">
+        {{Rating}}
+    </td>
+    <td class="">
+        {{Size}}
+    </td>
+    <td>
+        {{#Web}}
+            <a href="{{Web}}" target="_blank">{{Web}}</a>
+        {{/Web}}
+    </td>
+    <td>
+        {{#Tel}}
+            <a href="tel:{{Tel}}" target="_blank">{{Tel}}</a>
+        {{/Tel}}
+    </td>
+    <td>
+        {{{Email}}}
+    </td>
+</tr>
+{{/Firmy}}
+</tbody>
+</table>
+{{/Firmy.0}}
+
+{{^Firmy.0}}
+
+{{#Term}}
+<br>
+<p class="alert alert-warning">No companies has been found</p>
+{{/Term}}
+{{^Term}}
+<br>
+<p class="alert alert-primary">Please enter search phrase</p>
+{{/Term}}
+
+{{/Firmy.0}}

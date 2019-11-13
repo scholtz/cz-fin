@@ -1,0 +1,28 @@
+<h1>Vyhľadávanie v kontextovej databáze: {{Name}}</h1>
+<form method="post">
+<div class="input-group col-md-12">
+  <input type="text" class="form-control" name="text" placeholder="Vyhledat text" value="{{Search}}">
+  <button type="submit" class="btn btn-outline-primary mb-2">Vyhledat</button>
+</div>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-borderless table-sm table-striped">
+    <thead>
+        <tr>
+        {{#TableHeader}}
+        <th>{{HeaderName}}</th>
+        {{/TableHeader}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#TableData}}
+        <tr>
+        {{#Column}}
+        <td class="{{Class}}">{{Value}}</td>
+        {{/Column}}
+        </tr>
+        {{/TableData}}
+    </tbody>
+    </table>
+</div>

@@ -23,5 +23,6 @@ $(document).ready(function(){
    gtag('config', 'UA-3898474-31');
    
    $.getScript( "https://www.googletagmanager.com/gtag/js?id=UA-3898474-31" );
+   $.getScript( "https://connect.facebook.net/cs_CZ/sdk.js#xfbml=1&version=v4.0&appId=133245520136227&autoLogAppEvents=1");
    
 });

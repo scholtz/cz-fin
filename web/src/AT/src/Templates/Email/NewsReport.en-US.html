@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="utf-8">
+    <title>Media monitoring by Scholtz &amp; Co</title>
+    <style>
+        td{
+            vertical-align:top;
+        }
+    </style>
+  </head>
+  <body style="font-family: frutiger">
+    
+    <h1>Media monitoring - {{Type}} report</h1>
+
+{{#Keywords}}
+<h2>{{Keyword}} - <a href="https://www.cz-fin.com/Spravy/search={{Keyword}}">https://www.cz-fin.com/Spravy/search={{Keyword}}</a></h2>
+<table>
+<thead>
+<tr><th>Source</th><th>Time</th><th>Headline</th></tr>
+</thead>
+<tbody>
+{{#News}}
+<tr><td>{{source}}</td><td>{{Time}}</td><td><a href="{{web}}">{{headline}}</a></td></tr>
+{{/News}}
+</tbody>
+</table>
+
+{{/Keywords}}
+</body>
+</html>

@@ -6,6 +6,7 @@ namespace AT\Block;
 use AsyncWeb\DB\DB;
 use AsyncWeb\Frontend\URLParser;
 use AsyncWeb\Security\Auth;
+use AsyncWeb\System\Language;
 
 class Header extends \AsyncWeb\Frontend\Block{
 	public function initTemplate(){
@@ -45,14 +46,18 @@ class Header extends \AsyncWeb\Frontend\Block{
       </a>
       <div class="dropdown-menu">
       
-        <a class="dropdown-item" href="/Form_AdminCoupons">Kupóny</a>
-        <a class="dropdown-item" href="/Form_AdminLicenceOverview">Licencie</a>
-        <a class="dropdown-item" href="/AdminMonitoringLive">Monitoring LIVE</a>
-        <a class="dropdown-item" href="/Form_AdminMonitorDayCI">Monitoring DAY</a>
-        <a class="dropdown-item" href="/Form_AdminMonitorMonthCI">Monitoring MONTH</a>
-        <a class="dropdown-item" href="/Form_NewsConfig">News Config</a>
-        <a class="dropdown-item" href="/Form_HTML2RSS">HTML2RSS Config</a>
-        <a class="dropdown-item" href="/Admin_MissedNews">Missed news</a>
+      
+        <a class="dropdown-item" href="/MonitoringStats/type=2">'.Language::get("Monitoring stats").'</a>
+        <a class="dropdown-item" href="/Form_AdminCoupons">'.Language::get("Kupóny").'</a>
+        <a class="dropdown-item" href="/Form_AdminLicenceOverview">'.Language::get("Licence").'</a>
+        <a class="dropdown-item" href="/AdminMonitoringLive">'.Language::get("Monitoring LIVE").'</a>
+        <a class="dropdown-item" href="/Form_AdminMonitorDayCI">'.Language::get("Monitoring DAY").'</a>
+        <a class="dropdown-item" href="/Form_AdminMonitorMonthCI">'.Language::get("Monitoring MONTH").'</a>
+        
+        <a class="dropdown-item" href="/Form_AdminNewsPrimarySource">'.Language::get("News primary source config").'</a>
+        <a class="dropdown-item" href="/Form_NewsConfig">'.Language::get("News Config").'</a>
+        <a class="dropdown-item" href="/Form_HTML2RSS">'.Language::get("HTML2RSS Config").'</a>
+        <a class="dropdown-item" href="/Admin_MissedNews">'.Language::get("Missed news").'</a>
         
         
       </div>
@@ -82,16 +87,16 @@ class Header extends \AsyncWeb\Frontend\Block{
           break;
       }
       $add2.='
-        <a class="dropdown-item" href="/Form_LicenceOverview">Licence</a>
-        <a class="dropdown-item" href="/Form_MonitorLiveCI">Monitoring médií LIVE</a>
-        <a class="dropdown-item" href="/Form_MonitorDayCI">Monitoring médií - Denný report</a>
-        <a class="dropdown-item" href="/Form_MonitorMonthCI">Monitoring médií - Mesačný report</a>
-        <a class="dropdown-item" target="_blank" href="https://cs.gravatar.com/'.md5( strtolower( trim( \AsyncWeb\Objects\User::getEmailOrId() ) ) ).'">Nastav avatar</a>
-        <a class="dropdown-item" href="/Bonus">Bonus</a>
+        <a class="dropdown-item" href="/Form_LicenceOverview">'.Language::get("Licence").'</a>
+        <a class="dropdown-item" href="/Form_MonitorLiveCI">'.Language::get("Monitoring médií LIVE").'</a>
+        <a class="dropdown-item" href="/Form_MonitorDayCI">'.Language::get("Monitoring médií - Denný report").'</a>
+        <a class="dropdown-item" href="/Form_MonitorMonthCI">'.Language::get("Monitoring médií - Mesačný report").'</a>
+        <a class="dropdown-item" target="_blank" href="https://cs.gravatar.com/'.md5( strtolower( trim( \AsyncWeb\Objects\User::getEmailOrId() ) ) ).'">'.Language::get("Nastav avatar").'</a>
+        <a class="dropdown-item" href="/Bonus">'.Language::get("Bonus").'</a>
         
-        <a class="dropdown-item" href="/Form_InvoiceSettings">Fakturační údaje</a>
-        <a class="dropdown-item" href="/Form_UserSettings">Uživatelské nastavení</a>
-        <a class="dropdown-item" href="./logout=1">Odhlášení</a>
+        <a class="dropdown-item" href="/Form_InvoiceSettings">'.Language::get("Fakturační údaje").'</a>
+        <a class="dropdown-item" href="/Form_UserSettings">'.Language::get("Uživatelské nastavení").'</a>
+        <a class="dropdown-item" href="./logout=1">'.Language::get("Odhlášení").'</a>
       </div>
     </li>';
         }else{
@@ -112,30 +117,30 @@ class Header extends \AsyncWeb\Frontend\Block{
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Prehled činností</a>
+        <a class="nav-link" href="/">'.Language::get("Prehled činností").'</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/Spravy">Monitoring médií</a>
+        <a class="nav-link" href="/Spravy">'.Language::get("Monitoring médií").'</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Cenik">Ceník</a>
+        <a class="nav-link" href="/Cenik">'.Language::get("Ceník").'</a>
       </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Statistiky
+        '.Language::get("Statistiky").'
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="/Stats">Statistiky dat</a>
-        <a class="dropdown-item" href="/Datasety">Seznam použitých datových zdrojů</a>
+        <a class="dropdown-item" href="/Stats">'.Language::get("Statistiky dat").'</a>
+        <a class="dropdown-item" href="/Datasety">'.Language::get("Seznam použitých datových zdrojů").'</a>
       </div>
     </li>
       '.$add.'
     </ul>
     <ul class="navbar-nav ml-auto">
         <form class="form-inline my-2 my-lg-0" method="post" action="/Search/">
-          <input class="form-control mr-sm-2" type="search" name="text" placeholder="Název nebo IČO společnosti" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Vyhledat</button>
+          <input class="form-control mr-sm-2" type="search" name="text" placeholder="'.Language::get("Název nebo IČO společnosti").'" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">'.Language::get("Vyhledat").'</button>
         </form>'.$add2.'
     </ul>
   </div>

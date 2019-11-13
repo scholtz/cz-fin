@@ -17,14 +17,14 @@ class ApplyBonus extends \AsyncWeb\Frontend\Block{
             if(!$coderow["used"] && $coderow["type"] == "full"){
                 
                 \AT\Classes\Licence::newLicenceByCoupon(URLParser::v("couponCode"));
-                header("Location: https://www.cz-fin.com/Form_AdminLicenceOverview");
+                header("Location: https://".$_SERVER["HTTP_HOST"]."/Form_AdminLicenceOverview");
                 exit;
             }
             
             if(strlen(URLParser::get("couponCode") <= 10)){
                 \AsyncWeb\Storage\Session::set("ReferalCode",URLParser::v("couponCode"));
             }
-            header("Location: https://www.cz-fin.com/Buy/type=".URLParser::v("type"));
+            header("Location: https://".$_SERVER["HTTP_HOST"]."/Buy/type=".URLParser::v("type"));
             exit;
         }
         $this->setData(["type"=>URLParser::v("type"),"code"=>\AsyncWeb\Storage\Session::get("ReferalCode")]);

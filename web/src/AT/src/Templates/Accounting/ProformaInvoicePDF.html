@@ -1,0 +1,186 @@
+<style>
+th, td{
+ vertical-align:top;
+ font-size: 10px;
+}
+.body{
+}
+</style>
+<div class="body">
+<img src="https://www.cz-fin.com/img/logo.png" style="float:right" height="50px">
+<h1>Zálohová faktura č. {{vs}}</h1>
+<table style="width:100%">
+    <tr>
+        <td style="border:1px solid gray; padding: 10px; width:50%; vertical-align: top">
+            <h2>Vystavitel</h2>
+            <table style="width:100%">
+                <tr>
+                    <th style="text-align:left; width:30%">Společnost</th>
+                    <td>Scholtz &amp; Company, j.s.a.</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">IČO</th>
+                    <td>SK 51 882 272</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">DIČ</th>
+                    <td>2120828105</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left"></th>
+                    <td>Společnost není platcem DPH</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left; vertical-align:top">Sídlo</th>
+                    <td>Švabinského 21, 851 01 Bratislava</td>
+                </tr>
+                <tr>
+                    <th style="height:50px"/>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Vystavená dne</th>
+                    <td>
+                        <b>{{date}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Splatnost</th>
+                    <td>
+                        <b>{{payable}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Variabilní symbol</th>
+                    <td>
+                        <b>{{vs}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Specifikí symbol</th>
+                    <td>
+                        <b>{{ss}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Bankovní účet</th>
+                    <td>
+                        <b>{{Bank}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">IBAN</th>
+                    <td>
+                        <b>{{IBAN}}</b>
+                    </td>
+                </tr>
+            </table>
+
+
+        </td>
+        <td style="border:1px solid gray; padding: 10px; width:50%; vertical-align: top">
+            <h2>Odběratel</h2>
+
+{{#client}}
+
+            <table style="width:100%">
+{{#name}}<tr>
+                    <th style="text-align:left; width:30%">Meno/Spol.</th>
+                    <td>{{name}}</td>
+                </tr>{{/name}}
+{{#ico}}<tr>
+                    <th style="text-align:left">IČO</th>
+                    <td>{{ico}}</td>
+                </tr>{{/ico}}
+{{#dic}}<tr>
+                    <th style="text-align:left">DIČ</th>
+                    <td>{{dic}}</td>
+                </tr>{{/dic}}
+{{#ulica}}<tr>
+                    <th style="text-align:left">Ulice</th>
+                    <td>{{ulica}}</td>
+                </tr>{{/ulica}}
+{{#ulica2}}<tr>
+                    <th style="text-align:left"/>
+                    <td>{{ulica2}}</td>
+                </tr>{{/ulica2}}
+{{#psc}}<tr>
+                    <th style="text-align:left">PSČ</th>
+                    <td>{{psc}}</td>
+                </tr>{{/psc}}
+{{#mesto}}<tr>
+                    <th style="text-align:left">Město</th>
+                    <td>{{mesto}}</td>
+                </tr>{{/mesto}}
+{{#stat}}<tr>
+                    <th style="text-align:left">Stát</th>
+                    <td>{{stat}}</td>
+                </tr>{{/stat}}
+
+{{#email}}<tr>
+                    <th style="text-align:left; width:30%">Email</th>
+                    <td>{{email}}</td>
+                </tr>{{/email}}
+{{#phone}}<tr>
+                    <th style="text-align:left; width:30%">Tel.</th>
+                    <td>{{phone}}</td>
+                </tr>{{/phone}}
+                
+
+{{#ucet}}<tr>
+                    <th style="text-align:left">Bankovní účet</th>
+                    <td>{{ucet}}</td>
+                </tr>{{/ucet}}
+{{#bic}}<tr>
+                    <th style="text-align:left">BIC</th>
+                    <td>{{bic}}</td>
+                </tr>{{/bic}}
+            </table>
+
+{{/client}}
+
+        </td>
+    </tr>
+</table>
+<br/>
+
+<table style="width:100%;border:1px solid gray; padding: 10px; vertical-align: top">
+    <thead>
+        <tr>
+            <th style="text-align:left">
+                <h2>Položky faktury</h2>
+            </th>
+        </tr>
+        <tr>
+            <th style="text-align:left">Položka</th>
+            <th style="text-align:right">Množství</th>
+            <th style="text-align:right">Jedn. Cena</th>
+            {{#hasd}}
+            <th style="text-align:right">Sleva</th>
+            <th style="text-align:right">Celková cena</th>
+            {{/hasd}}
+            {{^hasd}}
+            <th style="text-align:right">Celková cena</th>
+            {{/hasd}}
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+            {{n}}
+            </td>
+            <td style="text-align:right">1</td>
+            <td style="text-align:right">{{a}} {{Currency}}</td>
+            {{#hasd}}
+            <td style="text-align:right">{{d}} {{Currency}}</td>
+            <td style="text-align:right">{{ta}} {{Currency}}</td>
+            {{/hasd}}
+            {{^hasd}}
+            <td style="text-align:right">{{a}} {{Currency}}</td>
+            {{/hasd}}
+        </tr>
+    </tbody>
+</table>
+
+<p style="text-align:center">Uhraďte prosím částku <b>{{ta}}</b> {{Currency}} na bankovní účet <b>{{Bank}}</b>. Po úhradě Vám vystavíme řádnou fakturu.</p>
+</div>

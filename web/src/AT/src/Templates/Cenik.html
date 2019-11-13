@@ -1,7 +1,9 @@
 <div class="col-12">
     <div class="text-center">
         <h1>Ceník</h1>
+        <p>Pošlete nám do chatu nebo na email <a href="mailto:info@cz-fin.com?subject=Žádost o monitoring&body=Prosím posílejte nám denní a měsíční monitoring pro následující klíčová slova: &lt;VÝBĚR 1 - 10 VÝRAZŮ&gt;%0D%0A%0D%0ANaše fakturační údaje: <JMÉNO / FIRMA>, <IČO>, <SÍDLO / ADRESA>, <TELEFON>"> info@cz-fin.com </a> seznam sledovaných slov, Vaše fakturační údaje, a vše nastavíme za Vás.</p>
     <br/>
+    
     </div>
     <div class="table-responsive">
         <table class="table table-borderless table-sm">
@@ -21,11 +23,18 @@
                 </td>
             </tr>
             <tr>
-                <td/>
+                <td>Měseční fakturace</td>
                 <td class="free darken1">Zadarmo</td>
-                <td class="personal darken1">9999 Kč / rok</td>
-                <td class="premium darken1">39 999 Kč / rok</td>
-                <td class="enterprise darken1">199 999 Kč / rok</td>
+                <td class="personal darken1">999 Kč</td>
+                <td class="premium darken1">3 999 Kč</td>
+                <td class="enterprise darken1">19 9999 Kč</td>
+            </tr>
+            <tr>
+                <td>Roční fakturace</td>
+                <td class="free darken1">Zadarmo</td>
+                <td class="personal darken1">9999 Kč</td>
+                <td class="premium darken1">39 999 Kč</td>
+                <td class="enterprise darken1">199 999 Kč</td>
             </tr>
 
             <tr>
@@ -183,21 +192,21 @@
                 <td><a href="#live-monitoring-medii">LIVE monitoring médií</a></td>
                 <td class="free">0</td>
                 <td class="personal">0</td>
-                <td class="premium">1 výraz / uživatel</td>
+                <td class="premium">5 výrazů</td>
                 <td class="enterprise">Neomezený</td>
             </tr>
             <tr>
                 <td><a href="#denni-monitoring-medii">Denní monitoring médií</a></td>
                 <td class="free">0</td>
-                <td class="personal">1 výraz / uživatel</td>
-                <td class="premium">2 výrazy / uživatel</td>
+                <td class="personal">1 výraz</td>
+                <td class="premium">10 výrazů</td>
                 <td class="enterprise">Neomezený</td>
             </tr>
             <tr>
                 <td><a href="#mesicni-monitoring-medii">Měsíční monitoring médií</a></td>
                 <td class="free">0</td>
-                <td class="personal">1 výraz / uživatel</td>
-                <td class="premium">2 výrazy / uživatel</td>
+                <td class="personal">1 výraz</td>
+                <td class="premium">10 výrazů</td>
                 <td class="enterprise">Neomezený</td>
             </tr>
         </table>
@@ -222,7 +231,7 @@
         <h2 id="pokrocile-filtrovani-firem">Pokročilé filtrování v databázích</h2>
         <p><a href="/img/info/advanced-filter.png" data-lightbox="help" class="img-thumbnail float-right"><img src="/img/info/advanced-filter.png" style="max-height: 100px"></a>Po zakoupení alespoň Fin Personal licence se uživateli zobrazí při vyhledávání pokročilý filtr. Vedle standardním vyhledávání podle IČ nebo podle názvu společnosti, s licencí je možné filtrovat i podle:</p><ol><li>primární činnosti společnosti;<li>podle velikosti organizace a<li>podle lokality.</ol><p>S licencí je možné použít tento filtr i pro export dat kontaktních údajů do excelu.</p>
         <h2 id="export-firem-do-excelu">Exporty do excelu</h2>
-        <p>Po zakoupení alespoň Fin Personal licence se uživateli zobrazí při vyhledávání možnost exportu údajů do formátu CSV, který lze importovat nebo rovnou otevřít v tabulkovém procesoru, například v MS Excel. Při tomto exportu se uloží prvních 1000 řádků podle zadaného filtru, seřazených podle našeho interního ratingového systému. Vedle názvu společnosti a IČO společnosti se vyexportuje i hodnota našeho interního ratingu ve formátu rating a maxrating, kde celková kvalita firmy lze vyjariť jako podíl těchto čísel. Rating 100% znamená nejkvalitnější firma. Rating 80% znamená, že 20% firem v České republice bylo hodnoceno výše. Vedle těchto údajích se exportuje i hlavní webová stránka společnosti, hlavní email a hlavní telefonní kontakt pokud tyto údaje máme o firmě k dispozici.</p>
+        <p>Po zakoupení alespoň Fin Personal licence se uživateli zobrazí při vyhledávání možnost exportu údajů do formátu CSV, který lze importovat nebo rovnou otevřít v tabulkovém procesoru, například v MS Excel. Při tomto exportu se uloží prvních 1000 řádků podle zadaného filtru, seřazených podle našeho interního <a href="#rating-firmy">ratingového systému</a>. Vedle názvu společnosti a IČO společnosti se vyexportuje i hodnota našeho interního ratingu ve formátu rating a maxrating, kde celková kvalita firmy lze vyjariť jako podíl těchto čísel. Rating 100% znamená nejkvalitnější firma. Rating 80% znamená, že 20% firem v České republice bylo hodnoceno výše. Vedle těchto údajích se exportuje i hlavní webová stránka společnosti, hlavní email a hlavní telefonní kontakt pokud tyto údaje máme o firmě k dispozici.</p>
         <h2 id="csv-datasety">CSV datasety</h2>
         <p>Naším hlavním posláním je kombinovat dostupná data z různých zdrojů, například od státu. Tento projekt byl vytvořen na hackathone <a href="https://hackujstat.cz" target="_blank">#hackujstat</a>, kde jsme našli mnoho zajímavých zdrojů dat a vytvořili jsme systém automatického stahování a zpracování nových datasetů který zveřejňuje stát. Tyto údaje kontextově zpracováváme a agregát je podle jejich významu - například faktury, objednávky, smlouvy, seznamy podnikatelů a podobně. Po zakoupení licence alespoň Fin Premium umožňujeme tyto agregované údaje ke stažení. Výstup je ve formátu CSV v UTF-8 kódování komprimován přes gzip. Data jsou k dispozici ke stažení na stránce <a href="/Stats">naše datové sady</a>.</p> 
         <h2 id="pocet-uzivatelu">Počet užívatelů</h2>
@@ -236,5 +245,20 @@
         
         <h2 id="mesicni-monitoring-medii">Měsíční monitoring médií</h2>
         <p>Měsíční monitoring médií funguje stejně jako <a href="#denni-monitoring-medii">denní monitoring</a>, avšak report se odesílá o půl noci ráno nového měsíce a obsahuje celý předchozí měsíc. Pokud report obsahuje příliš mnoho odkazů, zobrazuje se v něm pouze posledních 500 zpráv. Sledované výrazy se nastavují na stránce <a href="/Form_MonitorMonthCI">Monitoring médií - měsíční report</a>. Pokud naši službu podpoříte, v budoucnu plánujeme zpracovat i skloňování abyste to mele jednodušeji. Vyžaduje to však dodatečné náklady na výpočetní sílu a personální lingvistické zdroje.</p>
+        
+        <h2 id="rating-firmy">Rating firmy</h2>
+        <p>Náš interní algoritmus vyhodnocuje kvalitu každé české firmy. Na základě veřejných údajů zkoumáme propojení firem na státní instituce a vyhodnocujeme jejich ekonomickou stabilitu. Pokud má firma vyšší základní kapitál, nebo pokud je firma déle na trhu, nebo se užší specializuje na konkrétní činnost, má vyšší rating než jiná firma. Každá česká firma má přidělen v našem systému rating, a algoritmus řadí firmy podle tohoto ratingu. V kategoriích činností třídíme firmy podle jejich ratingu. Rating firmy je dostupný ke stažení možností exportu firmy při pokročilém filtrování nebo ke stažení jako <a href="/Stats">dataset</a>.
+        </p>
+        <p>Škála hodnocení od AAA-F:</p>
+        <ul>
+            <li>AAA - 90% firem v ČR má nižší rating</li>
+            <li>AA - 80% firem v ČR má nižší rating</li>
+            <li>A - 70% firem v ČR má nižší rating</li>
+            <li>B - 50% firem v ČR má nižší rating</li>
+            <li>C - 30% firem v ČR má nižší rating</li>
+            <li>D - 20% firem v ČR má nižší rating</li>
+            <li>E - 10% firem v ČR má nižší rating</li>
+            <li>F - 90% firem v ČR má vyšší rating</li>
+        </ul>
     </div>
 </div>

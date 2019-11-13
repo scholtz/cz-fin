@@ -23,7 +23,7 @@ class MissedNews extends \AsyncWeb\Frontend\Block{
                 $res = DB::query("update `dev02`.`${lang}_spravy_texts` set spracovane = '1' where od > '$t' and web like '%$site%'");
                 $c = DB::affected_rows();
                 \AsyncWeb\Text\Msg::mes("Na spracovanie $c zaznamov");
-                header("Location: https://www.cz-fin.com/Admin_MissedNews/lang=$lang");
+                header("Location: https://".$_SERVER["HTTP_HOST"]."/Admin_MissedNews/lang=$lang");
                 exit;
             }
         }

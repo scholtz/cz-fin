@@ -1,0 +1,61 @@
+<form class="form-inline"  method="post" action="/Spravy/">
+    <div class="col-md-12" style="padding: 1em 1em 0 1em">
+        <a class="btn {{#is7d}}btn-info btn-xs{{/is7d}}{{^is7d}}btn-light btn-xs btn-outline-info{{/is7d}} float-right" style="margin:2px" href="/Spravy/lang=en-US/t=w" title="List news in last 7 days">7D</a>
+        <a class="btn {{#is24h}}btn-info btn-xs{{/is24h}}{{^is24h}}btn-light btn-xs btn-outline-info{{/is24h}} float-right" style="margin:2px" href="/Spravy/lang=en-US/" title="List news in last 24 hours">24H</a>
+        <a class="btn {{#is12h}}btn-info btn-xs{{/is12h}}{{^is12h}}btn-light btn-xs btn-outline-info{{/is12h}} float-right" style="margin:2px" href="/Spravy/lang=en-US/t=12h" title="List news in last 12 hours">12H</a>
+        <a class="btn {{#is3h}}btn-info btn-xs{{/is3h}}{{^is3h}}btn-light btn-xs btn-outline-info{{/is3h}} float-right" style="margin:2px" href="/lang=en-US/Spravy/t=3h" title="List news in last 3 hours">3H</a>
+        <a class="btn {{#is1h}}btn-info btn-xs{{/is1h}}{{^is1h}}btn-light btn-xs btn-outline-info{{/is1h}} float-right" style="margin:2px" href="/lang=en-US/Spravy/t=1h" title="List news in last hour">1H</a>
+        
+        <h1>Media monitoring</h1>
+        <!-- GENERATED AT: {{Time}} -->
+    </div>
+    
+    
+    <div class="input-group col-md-12">
+      <input type="text" class="form-control" name="text" placeholder="Search text" value="{{Term}}">
+      <button type="submit" class="btn btn-outline-primary mb-2">Search</button>
+    </div>
+    {{#Term}}
+        {{#Keywords.0}}    
+        <div class="col-md-12">
+            <div class="alert alert-info">We couldn't find any results for your search term. The term can consist of a maximum of three words and must be tilted in the form as used in the media. Case - uppercase and lowercase letters, special characters [Ľ, Ĺ] don't matter for the search.</div>
+        </div>
+        {{/Keywords.0}}    
+    {{/Term}}
+</form>
+
+{{#Keywords.0}}
+<div class="col-12" id="keywords">
+{{#Keywords}} {{{html}}} . {{/Keywords}}
+
+<label for="keywords" class="col-form-label">Legend: Size of the word means how many words occured in watched period. Color more to <span style="color:#00ff00">light green</span> means fresh news, a <span style="color:#ff0000">light red</span> - news that was in the period before watched period and is not present in the current watch period. Big <span style="color: #008800">green font</span> means important news which is still present in the news.
+</label>
+<div>
+</div>
+{{/Keywords.0}}
+{{#News.0}}
+<div class="col-12">
+{{#Keywords.0}}
+    <h2>Recent news</h2>
+{{/Keywords.0}}
+{{^Keywords.0}}
+    <h2>{{Term}}</h2>
+{{/Keywords.0}}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-sm table-bordered">
+        <thead>
+        <tr>
+        <th class="d-none d-sm-table-cell">Source</th>
+        <th>Time</th>
+        <th>Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#News}}
+        <tr><td class="d-none d-sm-table-cell">{{Source}}</td><td>{{Time}}</td><td><a target="_blank" href="{{web}}" lang="{{lang}}">{{headline}}</a></td></tr>
+        {{/News}}
+        </tbody>
+        </table>
+    </div>
+</div>
+{{/News.0}}

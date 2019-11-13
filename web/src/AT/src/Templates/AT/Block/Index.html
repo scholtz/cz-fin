@@ -8,13 +8,28 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest"></head>
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- Smartsupp Live Chat script -->
+    <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = 'a8ef163322e8099c8476be0bd081972bde8458e4';
+    </script>
+</head>
 <body>
+<header class="container-fluid text-right">
+ <a href="https://en.cz-fin.com{{URI}}" title="English language">EN</a> | 
+ <a href="https://sk.cz-fin.com{{URI}}" title="Slovak language">SK</a> |
+ <a href="https://www.cz-fin.com{{URI}}" title="Czech language">CS</a>
+</header>
 {{{Header}}}
 <div class="container-fluid page-content-wrapper">
 <div id="messages"></div>
 {{{Content_Cat:Main}}}
 </div>
+
+
+<div id="User" class="collapse" style="display:none" data-name="{{UserName}}" data-email="{{UserEmail}}"></div>
+
 <div class="container-fluid footer">
 {{{Footer}}}
 </div>

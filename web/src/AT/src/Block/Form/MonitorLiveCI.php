@@ -9,10 +9,12 @@ use AsyncWeb\DB\DB;
 class MonitorLiveCI extends \AsyncWeb\DefaultBlocks\Form{
     protected $requiresAuthenticatedUser = true;
     public function beforeInsert(){
-        $available = \AT\Classes\Licence::availableMonitorsLiveForUser();
-        $current = \AT\Classes\Licence::currentUsageMonitorLive();
-        if($current >= $available){
-            throw new \Exception(Language::get("You have used all available (%available%) live monitors for your licences.",["%available%"=>$available]));
+        if(!\AsyncWeb\Objects\Group::is_in_group("admin")){
+            $available = \AT\Classes\Licence::availableMonitorsLiveForUser();
+            $current = \AT\Classes\Licence::currentUsageMonitorLive();
+            if($current >= $available){
+                throw new \Exception(Language::get("You have used all available (%available%) live monitors for your licences.",["%available%"=>$available]));
+            }
         }
         return true;
     }
@@ -37,7 +39,7 @@ class MonitorLiveCI extends \AsyncWeb\DefaultBlocks\Form{
 				//array("name"=>"Clear-Text","data"=>array("col"=>"t_clear"),"usage"=>array("DBVs","DBVe")),
 				array("name"=>"Text","data"=>array("col"=>"t_ci"),"usage"=>array("MFi","MFu","DBVs","DBVe")),
 				array("name"=>"Email","data"=>array("col"=>"email"),"usage"=>array("MFi","MFu","DBVs","DBVe")),
-                array("name"=>Language::get("Licence"),"data"=>array("col"=>"licence"),"filter"=>array("type"=>"option","option"=>\AT\Classes\Licence::availableUserLicences()
+                "lic"=>array("name"=>Language::get("Licence"),"data"=>array("col"=>"licence"),"filter"=>array("type"=>"option","option"=>\AT\Classes\Licence::availableUserLicences()
                 
                 ),"usage"=>array("MFi","MFu","DBVs","DBVe")),
 			),

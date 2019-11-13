@@ -15,7 +15,7 @@ class Search extends \AsyncWeb\Frontend\Block{
             if($_POST["kraj"]) $add .= "/kraj=".$_POST["kraj"];
             if($_POST["size"]) $add .= "/size=".$_POST["size"];
             if($_POST["nace"]) $add .= "/nace=".$_POST["nace"];
-            header("Location: /Search".$add."/s=".$_POST["text"]);
+            header("Location: https://".$_SERVER["HTTP_HOST"]."/Search".$add."/s=".$_POST["text"]);
             exit;
         }
         
@@ -25,7 +25,7 @@ class Search extends \AsyncWeb\Frontend\Block{
         $current = URLParser::v("s");
         
         if(strlen($current) == 8 && $row = DB::gr("data_czfin_pages",["id2"=>$current])){
-            header("Location: https://cz-fin.com/Content_Cat:Firma/ico=$current/");
+            header("Location: https://".$_SERVER["HTTP_HOST"]."/Content_Cat:Firma/ico=$current/");
             exit;
         }
         

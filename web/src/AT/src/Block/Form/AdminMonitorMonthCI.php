@@ -7,9 +7,15 @@ use AsyncWeb\Security\Auth;
 use AsyncWeb\DB\DB;
 
 class AdminMonitorMonthCI extends MonitorMonthCI{
+    protected $requiresAuthenticatedUser = true;
+    protected $requiresAllGroups = ["admin"];
+
     public $type = "CI";
     public function preProcess(){        
         if(\AsyncWeb\Objects\Group::is_in_group("admin")){
+
+            $this->formSettings["col"]["lic"] = array("name"=>Language::get("Licence"),"data"=>array("col"=>"licence"),"filter"=>array("type"=>"option","option"=>\AT\Classes\Licence::availableAllLicences()),"usage"=>array("MFi","MFu","DBVs","DBVe"));
+
             unset($this->formSettings["where"]["email"]);
         }
     }

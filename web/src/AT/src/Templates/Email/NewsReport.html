@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="utf-8">
+    <title>Monitoring médií</title>
+    <style>
+        td{
+            vertical-align:top;
+        }
+    </style>
+  </head>
+  <body style="font-family: frutiger">
+    
+    <h1>Monitoring médií - {{Type}} report</h1>
+
+{{#Keywords}}
+<h2>{{Keyword}} - <a href="https://www.cz-fin.com/Spravy/search={{Keyword}}">https://www.cz-fin.com/Spravy/search={{Keyword}}</a></h2>
+<table>
+<thead>
+<tr><th>Zdroj</th><th>Čas</th><th>Titulek</th></tr>
+</thead>
+<tbody>
+{{#News}}
+<tr><td>{{source}}</td><td>{{Time}}</td><td><a href="{{web}}">{{headline}}</a></td></tr>
+{{/News}}
+</tbody>
+</table>
+
+{{/Keywords}}
+
+</body>
+</html>

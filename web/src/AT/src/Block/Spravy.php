@@ -5,19 +5,20 @@ use AsyncWeb\Frontend\URLParser;
 use AsyncWeb\DB\DB;
 
 use AsyncWeb\Text\Texts;
+use AsyncWeb\System\Language;
 
 class Spravy extends \AsyncWeb\Frontend\Block{
 	
 	public function init(){
         
         if($search = URLParser::v("text")){
-            header("Location: https://www.cz-fin.com/Spravy/search=".$search);
+            header("Location: https://".$_SERVER["HTTP_HOST"]."/Spravy/search=".$search);
             exit;
         }
         
-        
         $empty = true;
         if($search = Texts::clear($term=URLParser::v("search"))){
+            
             \AsyncWeb\Frontend\BlockManagement::get("Content_HTMLHeader_Title")->changeData(array("title" => "$term - Monitoring médií | CZ-FIN"));
             
             //var_dump($search);
@@ -38,6 +39,7 @@ class Spravy extends \AsyncWeb\Frontend\Block{
                         //var_dump($k);exit;
                         if($i >= $count) break;
                         $news1["Time"] = date("d.m.Y H:i",$news1["time"]);
+                        if(!isset($news1["id2"])) $news1["id2"] = md5($news1["web"]);
                         if(!$news1["headline"]) $news1["headline"] = "[?]";
                         $i++;
                         
@@ -59,17 +61,23 @@ class Spravy extends \AsyncWeb\Frontend\Block{
             
             //var_dump(json_decode(base64_decode($row["data"]),true));exit;
             if($news){
-                $this->setData(["Term"=>$term,"News"=>$news,"html"=>""]);
+                $data =["Term"=>$term,"News"=>$news,"html"=>""];
+                $data["IsAdmin"] = \AsyncWeb\Objects\Group::is_in_group("admin");
+                if($data["IsAdmin"]){
+                    //var_dump($news);exit;
+                }
+                $this->setData($data);
                 $empty = false;
             }
         }
         if($empty){
             $pageBuilder = new \AT\Classes\News();
             
-            
-            
             $count = 30;
-            $allnewsByTime = $pageBuilder->getAllNews($count);
+            $lang = URLParser::v("lang");
+            if(!$lang) $lang = Language::getLang();
+            if($lang) $lang = substr($lang,0,2);
+            $allnewsByTime = $pageBuilder->getAllNews($count,$lang);
             
             $news = [];
             
@@ -97,7 +105,7 @@ class Spravy extends \AsyncWeb\Frontend\Block{
             
             $t = URLParser::v("t");
             if(!$t) $t = "24h";
-            $keywords = $pageBuilder->makeNewsPage("cz",$t,URLParser::v("refresh") == "1",URLParser::v("max"),URLParser::v("cache"));
+            $keywords = $pageBuilder->makeNewsPage($lang,$t,URLParser::v("refresh") == "1",URLParser::v("max"),URLParser::v("cache"));
             $data = ["News"=>$news, "Term"=>$term,"Keywords"=>$keywords["msgs"],"html"=>"","Time"=>date("c",$keywords["time"])];
             $data["is7d"] = $data["is24h"] = $data["is12h"] = $data["is3h"] = $data["is1h"] = false;
             switch($t){
@@ -117,8 +125,20 @@ class Spravy extends \AsyncWeb\Frontend\Block{
                     $data["is7d"] = true;
                 break;
             }
+            switch($lang){
+                case "en":
+                    $data["Lang"] = "en-US";
+                break;
+                case "sk":
+                    $data["Lang"] = "sk-SK";
+                break;
+                default:
+                    $data["Lang"] = false;
+                break;
+            }
+            $data["IsAdmin"] = \AsyncWeb\Objects\Group::is_in_group("admin");
             $this->setData($data);
-            \AsyncWeb\Frontend\BlockManagement::get("Content_HTMLHeader_Title")->changeData(array("title" => "Monitoring médií | CZ-FIN"));
+            \AsyncWeb\Frontend\BlockManagement::get("Content_HTMLHeader_Title")->changeData(array("title" => "Monitoring médií | $t | CZ-FIN"));
         }
         
         /**/

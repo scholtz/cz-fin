@@ -7,6 +7,9 @@ use AsyncWeb\Security\Auth;
 use AsyncWeb\DB\DB;
 
 class AdminMonitorLiveCS extends MonitorLiveCS{
+    protected $requiresAuthenticatedUser = true;
+    protected $requiresAllGroups = ["admin"];
+
     public $type = "CS";
     public function preProcess(){        
         if(\AsyncWeb\Objects\Group::is_in_group("admin")){

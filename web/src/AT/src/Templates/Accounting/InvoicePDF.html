@@ -1,0 +1,179 @@
+<style>
+th, td{
+ vertical-align:top;
+ font-size: 10px;
+}
+.body{
+}
+</style>
+<img src="https://www.cz-fin.com/img/logo.png" style="float:right" height="50px">
+<h1>Faktura č. {{InvoiceNumber}}</h1>
+<table style="width:100%">
+    <tr>
+        <td style="border:1px solid gray; padding: 20px; width:50%; vertical-align: top">
+            <h2>Vystavitel</h2>
+            <table style="width:100%">
+                <tr>
+                    <th style="text-align:left; width:30%">Společnost</th>
+                    <td>Scholtz &amp; Company, j.s.a.</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">IČO</th>
+                    <td>SK 51 882 272</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">DIČ</th>
+                    <td>2120828105</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left"></th>
+                    <td>Společnost není platcem DPH</td>
+                </tr>
+                <tr>
+                    <th style="text-align:left; vertical-align:top">Sídlo</th>
+                    <td>Švabinského 21, 851 01 Bratislava</td>
+                </tr>
+                <tr>
+                    <th style="height:50px"/>
+                </tr>
+
+                <tr>
+                    <th style="text-align:left">Vystavená dne</th>
+                    <td>
+                        <b>{{date}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Uhrazená dne</th>
+                    <td>
+                        <b>{{datepaid}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Variabilný symbol</th>
+                    <td>
+                        <b>{{OrderNumber}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Specifiký symbol</th>
+                    <td>
+                        <b>{{SpecificSymbol}}</b>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="text-align:left">Bankový účet</th>
+                    <td>
+                        <b>2801709852 / 2010</b>
+                    </td>
+                </tr>
+            </table>
+
+
+        </td>
+        <td style="border:1px solid gray; padding: 20px; width:50%; vertical-align: top">
+            <h2>Odberatel</h2>
+
+{{#client}}
+
+            <table style="width:100%">
+{{#name}}<tr>
+                    <th style="text-align:left; width:30%">Meno/Spol.</th>
+                    <td>{{name}}</td>
+                </tr>{{/name}}
+{{#ico}}<tr>
+                    <th style="text-align:left">IČO</th>
+                    <td>{{ico}}</td>
+                </tr>{{/ico}}
+{{#dic}}<tr>
+                    <th style="text-align:left">DIČ</th>
+                    <td>{{dic}}</td>
+                </tr>{{/dic}}
+{{#ulica}}<tr>
+                    <th style="text-align:left">Ulice</th>
+                    <td>{{ulica}}</td>
+                </tr>{{/ulica}}
+{{#ulica2}}<tr>
+                    <th style="text-align:left"/>
+                    <td>{{ulica2}}</td>
+                </tr>{{/ulica2}}
+{{#psc}}<tr>
+                    <th style="text-align:left">PSČ</th>
+                    <td>{{psc}}</td>
+                </tr>{{/psc}}
+{{#mesto}}<tr>
+                    <th style="text-align:left">Město</th>
+                    <td>{{mesto}}</td>
+                </tr>{{/mesto}}
+{{#stat}}<tr>
+                    <th style="text-align:left">Stát</th>
+                    <td>{{stat}}</td>
+                </tr>{{/stat}}
+
+{{#email}}<tr>
+                    <th style="text-align:left; width:30%">Email</th>
+                    <td>{{email}}</td>
+                </tr>{{/email}}
+{{#phone}}<tr>
+                    <th style="text-align:left; width:30%">Tel.</th>
+                    <td>{{phone}}</td>
+                </tr>{{/phone}}
+                
+
+{{#ucet}}<tr>
+                    <th style="text-align:left">Bankovní účet</th>
+                    <td>{{ucet}}</td>
+                </tr>{{/ucet}}
+{{#bic}}<tr>
+                    <th style="text-align:left">BIC</th>
+                    <td>{{bic}}</td>
+                </tr>{{/bic}}
+            </table>
+
+{{/client}}
+
+        </td>
+    </tr>
+</table>
+<br/>
+
+<table style="width:100%;border:1px solid gray; padding: 20px; vertical-align: top">
+    <thead>
+        <tr>
+            <th colspan="{{#hasd}}5{{/hasd}}{{^hasd}}4{{/hasd}}" style="text-align:left; padding: 20px;">
+                <h2>Položky faktury</h2>
+            </th>
+        </tr>
+        <tr>
+            <th style="text-align:left;padding: 20px 0 20px 20px;">Položka</th>
+            <th style="text-align:right;padding: 20px 0 20px 5px;">Množstvo</th>
+            <th style="text-align:right;padding: 20px 0 20px 5px;">Jedn. Cena</th>
+            {{#hasd}}
+            <th style="text-align:right;padding: 20px 0 20px 5px;">Sleva</th>
+            <th style="text-align:right;padding: 20px 20px 20px 5px;">Celková cena</th>
+            {{/hasd}}
+            {{^hasd}}
+            <th style="text-align:right;padding: 20px 20px 20px 5px;">Celková cena</th>
+            {{/hasd}}
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align:left;padding: 0 0 20px 20px;">
+            {{n}}
+            </td>
+            <td style="text-align:right;padding: 0 0 20px 5px">1</td>
+            <td style="text-align:right;padding: 0 0 20px 5px">{{a}} {{Currency}}</td>
+            {{#hasd}}
+            <td style="text-align:right;padding: 0 0 20px 5px">{{d}} {{Currency}}</td>
+            <td style="text-align:right;padding: 0 20px 20px 5px">{{ta}} {{Currency}}</td>
+            {{/hasd}}
+            {{^hasd}}
+            <td style="text-align:right;padding: 0 20px 20px 5px">{{a}} {{Currency}}</td>
+            {{/hasd}}
+        </tr>
+    </tbody>
+</table>
+
+<p style="text-align:center; padding: 20px; font-size: larger">Faktura již <b>BYLA</b> zaplacena a nevyžaduje žádnou akci.</p>

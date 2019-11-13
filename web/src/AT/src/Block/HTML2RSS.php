@@ -11,6 +11,7 @@ use AsyncWeb\Connectors\Page;
 class HTML2RSS extends \AsyncWeb\Frontend\Block{
 	public function initTemplate(){
         $code = URLParser::v("code");
+        $allowother = URLParser::v("other");
         
         if($config = DB::gr("dev02.config_html2rss",["code"=>$code])){
             $base = $config["base"];
@@ -32,53 +33,86 @@ class HTML2RSS extends \AsyncWeb\Frontend\Block{
 //            
             if($dom){
                 $xpath = new \DomXpath($dom);
-                //var_dump($config);
-                //var_dump($config["rule_iter"]);
+
+
+            if(isset($config["preprocessor"]) && $config["preprocessor"]){
+                foreach(explode("\n",$config["preprocessor"]) as $item){
+                    if(!trim($item)) continue;
+                    $items = @$xpath->query($item);
+                    if($items === false){
+                        if(self::$debug){
+                            echo "Error in query: $web : $item<br>\n";
+                        }
+                    }else{ 
+                        try {
+                            if($items)
+                                foreach($items as $nodeToRemove){
+                                    $nodeToRemove->parentNode->removeChild($nodeToRemove);
+                                }
+                        }catch(\Exception $exc){
+                            if(self::$debug){
+                                echo "Error in query: $item; ".$exc->getMessage()."\n";
+                            }
+                        }
+                    }
+                }
+            }
                 
                 $nodes = $xpath->query($config["rule_iter"]);
-                echo '<!-- '.$nodes->length.' -->';
+                echo "\n".'<!-- '.$nodes->length.' -->';
                 foreach($nodes as $node){
                     $link = $perex = "";
-                    $linknode = $xpath->query($config["rule_link"],$node)->item(0);
-                    if($linknode){
-                        $link = $linknode->nodeValue;
+                    
+                    if($nl = $xpath->query($config["rule_link"],$node)){
+                        if($linknode = $nl->item(0)){
+                           $link = $linknode->nodeValue; 
+                        }
+                    }else{
+                        echo "\n".'<!-- Error in query : '.$config["rule_link"].' -->';
                     }
-                    $perexnode = $xpath->query($config["rule_perex"],$node)->item(0);
-                    if($perexnode){
-                        $perex = $perexnode->nodeValue;
+                    
+                    if($nl = $xpath->query($config["rule_perex"],$node)){
+                        if($perexnode = $nl->item(0)){
+                            $perex = $perexnode->nodeValue;
+                        }
+                    }else{
+                        echo "\n".'<!-- Error in query : '.$config["rule_perex"].' -->';
                     }
                     
                     if(substr($link,0,1) == "/"){
                         $link = substr($link,1);
                     }
                     if(substr($link,0,5) == "http:" || substr($link,0,6) == "https:"){
-                        if(substr($link,0,strlen($base)) != $base){
-                        echo '<!-- 
-Link to other site: '.$link.' 
--->';
-                            continue;
+                        if(!$allowother){
+                            if(substr($link,0,strlen($base)) != $base){
+                                
+                                echo "\n".'<!-- Link to other site: '.$link.' -->';
+                            
+                                continue;
+                            }
                         }
                     }else{
                         $link = $base.$link;
                     }
                     
                     if($link && $perex){
-                 /*       
-            if($base == "https://www.marianne.cz/"){
-                var_dump($config["rule_iter"]);
-                var_dump($link);
-                var_dump($perex);
-                exit;
-            }/**/
+                         /*       
+                    if($base == "https://www.marianne.cz/"){
+                        var_dump($config["rule_iter"]);
+                        var_dump($link);
+                        var_dump($perex);
+                        exit;
+                    }/**/
+                        if(isset($done[$link])) continue;
+                        $done[$link] = true;
+            
                         echo '<item><title>'.htmlspecialchars($perex).'</title><description>'.htmlspecialchars($perex).'</description><link>'.$link.'</link></item>'."\n";
                         //var_dump($link);
                         //var_dump($perex);
                     }else{
-                        echo '<!-- 
+                        echo "\n".'<!-- 
 Link: '.$link.'
-Perex: '.$perex.'
-
--->';
+Perex: '.$perex.' -->';
 
                     }
                 }

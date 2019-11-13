@@ -59,6 +59,30 @@ class Licence{
         
         return $ret;
     }
+    public static function availableAllLicences($showHistory = false){
+        $ret = [];
+        $res = DB::qb("fin_licence_users",[ 
+            "distinct"=>true,
+            "cols"=>["licence"],
+            ]);
+        while($row=DB::f($res)){
+            $licence = DB::qbr("fin_licences",["cols"=>["name","end"],"where"=>["id2"=>$row["licence"]]]);
+            if(!$showHistory){
+                if(is_numeric($licence["end"])){
+                    if($licence["end"] < time()){
+                        continue;
+                    }
+                }else{
+                    if(strtotime($licence["end"]) < time()){
+                        continue;
+                    }
+                }
+            }
+            $ret[$row["licence"]] = $licence["name"];
+        }
+        
+        return $ret;
+    }
     public static function availableUserLicencesIds($showHistory = false){
         return array_keys(self::availableUserLicences($showHistory));
     }
@@ -73,7 +97,7 @@ class Licence{
             ]);
         while($row=DB::f($res)){
             $licence = DB::qbr("fin_licences",["cols"=>["type","end"],"where"=>["id2"=>$row["licence"]]]);
-            if(strtotime($licence["end"]) < time()){
+            if($licence["end"] < time()){
                 continue;
             }
 
@@ -98,7 +122,7 @@ class Licence{
             ]);
         while($row=DB::f($res)){
             $licence = DB::qbr("fin_licences",["cols"=>["type","end"],"where"=>["id2"=>$row["licence"]]]);
-            if(strtotime($licence["end"]) < time()){
+            if($licence["end"] < time()){
                 continue;
             }
             switch($licence["type"]){
@@ -125,7 +149,7 @@ class Licence{
             ]);
         while($row=DB::f($res)){
             $licence = DB::qbr("fin_licences",["cols"=>["type","end"],"where"=>["id2"=>$row["licence"]]]);
-            if(strtotime($licence["end"]) < time()){
+            if($licence["end"] < time()){
                 continue;
             }
             switch($licence["type"]){

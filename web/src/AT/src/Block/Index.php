@@ -24,10 +24,13 @@ class Index extends \AsyncWeb\Frontend\Block{
 
         $cssfiles = $this->listdir_by_date($cssd = 'dist/css/');
         $files = $this->listdir_by_date($jsd = 'dist/js/');
-        
+        $usr = \AsyncWeb\Objects\User::get();
         $this->setData($d = [
+            "URI"=>$_SERVER["REQUEST_URI"],
             "CSSURL"=>'/'.$cssd.str_replace(".gz","",reset($cssfiles)),
             "ScriptsURL"=>'/'.$jsd.str_replace(".gz","",reset($files)),
+            "UserEmail"=>$usr["email"],
+            "UserName"=>trim($usr["firstname"]." ".$usr["lastname"]),
         ]);
 	}
 }
