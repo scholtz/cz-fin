@@ -33,16 +33,17 @@ class MonitorLiveCI extends \AsyncWeb\DefaultBlocks\Form{
 			"uid"=>"watchci",
 			"table" => "dev02.spravy_watch",
 			"col" => array( 	
-                array("name"=>"Language","form"=>array("type"=>"select",),"texts"=>array("default"=>"sk"),"data"=>array("col"=>"lang"),"usage"=>array("MFi","MFu","MFd","DBVs","DBVe"),"filter"=>array("type"=>"option","option"=>array(
-				   "sk"=>"Slovak","cs"=>"Czech","en"=>"English"
+                array("name"=>"Language filter","form"=>array("type"=>"select",),"texts"=>array("default"=>"all"),"data"=>array("col"=>"lang"),"usage"=>array("MFi","MFu","MFd","DBVs","DBVe"),"filter"=>array("type"=>"option","option"=>array(
+				   "all"=>"All news","sk"=>"Slovak","cs"=>"Czech","en"=>"English"
 				),),),/**/
 				//array("name"=>"Clear-Text","data"=>array("col"=>"t_clear"),"usage"=>array("DBVs","DBVe")),
 				array("name"=>"Text","data"=>array("col"=>"t_ci"),"usage"=>array("MFi","MFu","DBVs","DBVe")),
 				array("name"=>"Email","data"=>array("col"=>"email"),"usage"=>array("MFi","MFu","DBVs","DBVe")),
-                "lic"=>array("name"=>Language::get("Licence"),"data"=>array("col"=>"licence"),"filter"=>array("type"=>"option","option"=>\AT\Classes\Licence::availableUserLicences()
                 
+                "lic"=>array("name"=>Language::get("Licence"),"data"=>array("col"=>"licence"),"filter"=>array("type"=>"option","option"=>\AT\Classes\Licence::availableUserLicences()
                 ),"usage"=>array("MFi","MFu","DBVs","DBVe")),
-			),
+                "slackwebhooks"=>array("name"=>Language::get("Slack webhook"),"data"=>array("col"=>"slackwebhooks"),"usage"=>array("MFi","MFu")),
+            ),
 			"bootstrap"=>"1",
             "rights"=>array("insert"=>"","update"=>"","delete"=>""),
 			"allowInsert"=>true,"allowUpdate"=>true,"allowDelete"=>true,"useForms"=>true,

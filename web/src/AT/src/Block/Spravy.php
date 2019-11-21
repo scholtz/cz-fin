@@ -77,6 +77,7 @@ class Spravy extends \AsyncWeb\Frontend\Block{
             $lang = URLParser::v("lang");
             if(!$lang) $lang = Language::getLang();
             if($lang) $lang = substr($lang,0,2);
+            //var_dump($lang);
             $allnewsByTime = $pageBuilder->getAllNews($count,$lang);
             
             $news = [];

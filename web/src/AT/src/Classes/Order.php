@@ -22,15 +22,30 @@ class Order{
         $where = ["id2"=>$id];
         if($this->email) $where["email"]=$this->email;
         
-        return DB::qbr("fin_orders",["where"=>$where]);
+        return DB::qbr("out.fin_orders",["where"=>$where]);
     }
-    public function newOrder($type,$period,$name,$coupon,$send = false,$currency = "czk"){
+    public function newOrder($type,$period,$name,$coupon,$send = false,$currency = "czk",$customprice = null,$payable="+7 days"){
         
         $payment = new \AT\Classes\Payment($this->email);
         $vs = $payment->getVS();
         $ss = $payment->getSS();
         
-        DB::u("fin_orders",$id = md5(uniqid()),$d = [
+        $currency = strtoupper($currency);
+        if($currency != "CZK" && $currency != "USD" && $currency != "EUR"){
+            $currency = "CZK";
+        }
+        if(strtotime($payable) < 0){
+            $payable="+7 days";
+        }
+        if($type != "personal" && $type != "premium" && $type != "enterprise"){
+            $type = "personal";
+        }
+        if($period != "month" && $period != "year"){
+            $period = "year";
+        }
+        
+        
+        DB::u("out.fin_orders",$id = md5(uniqid()),$d = [
             "email"=>$this->email,
             "type"=>$type,
             "period"=>$period, 
@@ -39,8 +54,9 @@ class Order{
             "vs"=>$vs,
             "ss"=>$ss,
             "created"=>time(),
-            "payable"=>strtotime("+7 days"),
+            "payable"=>strtotime($payable),
             "currency"=>$currency,
+            "customprice"=>$customprice,
         ]);
         if($send){
             $this->getInvoicePDF($id,true);
@@ -54,7 +70,7 @@ class Order{
             $where = ["email"=>$this->email];
         }
         //var_dump($this->email);exit;
-        $row=DB::qbr("fin_orders",["order"=>["od"=>"desc"],"where"=>$where]);
+        $row=DB::qbr("out.fin_orders",["order"=>["od"=>"desc"],"where"=>$where]);
         //var_dump($row);exit;
         return $row;
     }
@@ -215,24 +231,34 @@ class Order{
             $invoice["iban"] = "SK3983300000002801709852";
         }
 
-        $invoice["discountAmount"] = round($invoice["amount"] * $invoice["discount"],2);
-        $invoice["totalAmount"] = round($invoice["amount"] - $invoice["discountAmount"],2);
+        if($invoice["customprice"] > 0){
+            $invoice["totalAmount"] = round($invoice["customprice"],2);
+            $invoice["discountAmount"] = round($invoice["amount"] - $invoice["customprice"],2);
+        }else{
+            $invoice["discountAmount"] = round($invoice["amount"] * $invoice["discount"],2);
+            $invoice["totalAmount"] = round($invoice["amount"] - $invoice["discountAmount"],2);
+        }
 
         $invoice["msg"] .= " ".$invoice["name"];
         
-        $payment = new \AT\Classes\Payment($this->email);
-        $vs = $payment->getVS();
-        $ss = $payment->getSS();
-        
-        $updateOrder = [];
-        
-        
-        if(!$invoice["vs"]){
+         
+        if(!$invoice["vs"] || !$invoice["ss"]){
+            $payment = new \AT\Classes\Payment($this->email);
+            $vs = $payment->getVS();
+            $ss = $payment->getSS();
+            
+            
             $invoice["vs"]=$vs;
-        }
-        if(!$invoice["ss"]){
             $invoice["ss"]=$ss;
         }
+        
+        
+        $qr = new \Endroid\QrCode\QrCode($code = 'SPD*1.0*ACC:'.$invoice["iban"].'*AM:'.number_format($invoice["totalAmount"],2,".","").'*CC:'.$invoice["currency"].'*MSG:'.$invoice["msg"].'*X-VS:'.$invoice["vs"].'*X-SS:'.$invoice["ss"]);
+        $invoice["QRB64"] = base64_encode($qr->writeString());
+        $invoice["QRCode"] = $code;
+        
+        $invoice["totalAmountFormatted"] = number_format($invoice["totalAmount"],2,","," ");
+        
         return $invoice;
     }
     public function getInvoiceHTML($id){
@@ -240,13 +266,13 @@ class Order{
         if(!$invoice) return false;
         $client = ["name"=>"Klient z IP: ".$_SERVER["REMOTE_ADDR"]];
         if($email = $this->email){
-            $client = DB::gr("user_invoicedata",["email"=>$this->email]);
+            $client = DB::gr("out.user_invoicedata",["email"=>$this->email]);
             if(!$client){
-                DB::u("user_invoicedata",md5(uniqid()),["name"=>$this->email,"email"=>$this->email]);
-                $client = DB::gr("user_invoicedata",["email"=>$this->email]);
+                DB::u("out.user_invoicedata",md5(uniqid()),["name"=>$this->email,"email"=>$this->email]);
+                $client = DB::gr("out.user_invoicedata",["email"=>$this->email]);
             }
         }
-        if($invoice["discount"] > 0){
+        if($invoice["discountAmount"] > 0){
             $hasd = true;
         }else{
             $hasd = false;
@@ -268,6 +294,9 @@ class Order{
                 "payable"=>date("d.m.Y",$invoice["payable"]),
                 "Bank"=>$invoice["bank"],
                 "IBAN"=>$invoice["iban"],
+                "QRB64"=>$invoice["QRB64"],
+                "QRCode"=>$invoice["QRCode"],
+                "OrderId"=>$invoice["id2"],
                 ]);    
     }
 }

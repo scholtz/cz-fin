@@ -25,8 +25,8 @@ class Stats extends \AsyncWeb\Frontend\Block{
             switch($row["name"]){
                 case "ARES":
                     $stats[] = ["Dataset"=>$dataset,"Title"=>Language::get("Firem z DB ARES: %num%",["%num%"=>number_format($row["all"],0,","," ")]),
-                        "FirstLine"=>"Aktívnych: ","FirstLineNumber"=>number_format($row["all"] - $row["deleted"],0,","," "),
-                        "SecondLine"=>"Aktuálne v likvidaci: ","SecondLineNumber"=>number_format($row["akt-v-likv"],0,","," "),
+                        "FirstLine"=>Language::get("Aktívnych").": ","FirstLineNumber"=>number_format($row["all"] - $row["deleted"],0,","," "),
+                        "SecondLine"=>Language::get("Aktuálne v likvidaci").": ","SecondLineNumber"=>number_format($row["akt-v-likv"],0,","," "),
                     "Last"=>date("d.m.Y",$row["last"])
                     ];
                 break;
@@ -44,16 +44,16 @@ class Stats extends \AsyncWeb\Frontend\Block{
                     ];
                 break;
                 case "Faktury":
-                    $stats[] = ["Dataset"=>$dataset,"Title"=>$row["name"],"FirstLine"=>"Hodnota faktur: ","FirstLineNumber"=>number_format($row["valuesum"],0,","," ")." CZK",
-                    "SecondLine"=>"Počet faktúr: ","SecondLineNumber"=>number_format($row["all"],0,","," ")
+                    $stats[] = ["Dataset"=>$dataset,"Title"=>Language::get($row["name"]),"FirstLine"=>Language::get("Hodnota faktur").": ","FirstLineNumber"=>number_format($row["valuesum"],0,","," ")." CZK",
+                    "SecondLine"=>Language::get("Počet faktúr").": ","SecondLineNumber"=>number_format($row["all"],0,","," ")
                     ,"Last"=>date("d.m.Y",$row["last"]),
                     "LinkToSearch"=>"/ContextSearch/t=data_all_core_faktury"
 
                     ];
                 break;
                 case "Objednávky":
-                    $stats[] = ["Dataset"=>$dataset,"Title"=>$row["name"],"FirstLine"=>"Hodnota objednávek: ","FirstLineNumber"=>number_format($row["valuesum"],0,","," ")." CZK",
-                    "SecondLine"=>"Počet objednávok: ","SecondLineNumber"=>number_format($row["all"],0,","," ")
+                    $stats[] = ["Dataset"=>$dataset,"Title"=>Language::get($row["name"]),"FirstLine"=>Language::get("Hodnota objednávek").": ","FirstLineNumber"=>number_format($row["valuesum"],0,","," ")." CZK",
+                    "SecondLine"=>Language::get("Počet objednávok").": ","SecondLineNumber"=>number_format($row["all"],0,","," ")
                     ,"Last"=>date("d.m.Y",$row["last"]),
                     "LinkToSearch"=>"/ContextSearch/t=data_all_core_objednavky"
 
@@ -62,10 +62,10 @@ class Stats extends \AsyncWeb\Frontend\Block{
                 case "Registr smlouv":
                     $stats[] = [
                         "Dataset"=>$dataset,
-                        "Title"=>$row["name"],
-                        "FirstLine"=>"Hodnota smluv: ",
+                        "Title"=>Language::get($row["name"]),
+                        "FirstLine"=>Language::get("Hodnota smluv").": ",
                         "FirstLineNumber"=>number_format($row["valuesum"],0,","," ")." CZK",
-                        "SecondLine"=>"Počet smlouv: ",
+                        "SecondLine"=>Language::get("Počet smlouv").": ",
                         "SecondLineNumber"=>number_format($row["all"],0,","," "),
                         "Last"=>date("d.m.Y",$row["last"]),
                         "LinkToSearch"=>"/ContextSearch/t=data_smlouvy_core"
@@ -74,10 +74,10 @@ class Stats extends \AsyncWeb\Frontend\Block{
                 case "Smlouvy":
                     $stats[] = [
                         "Dataset"=>$dataset,
-                        "Title"=>$row["name"],
-                        "FirstLine"=>"Hodnota mimo registra: ",
+                        "Title"=>Language::get($row["name"]),
+                        "FirstLine"=>Language::get("Hodnota mimo registra").": ",
                         "FirstLineNumber"=>number_format($row["valuesum"],0,","," ")." CZK",
-                        "SecondLine"=>"Počet smlouv: ",
+                        "SecondLine"=>Language::get("Počet smlouv").": ",
                         "SecondLineNumber"=>number_format($row["all"],0,","," "),
                         "Last"=>date("d.m.Y",$row["last"]),
                         "LinkToSearch"=>"/ContextSearch/t=data_all_core_smlouvy"
@@ -90,7 +90,7 @@ class Stats extends \AsyncWeb\Frontend\Block{
                             $LinkToSearch = "/ContextSearch/t=".$dataset;
                         break;
                     }
-                    $stats[] = ["Dataset"=>$dataset,"Title"=>$row["name"],"FirstLine"=>"Spolu: ","FirstLineNumber"=>number_format($row["all"],0,","," "),"Last"=>date("d.m.Y",$row["last"]),"LinkToSearch"=>$LinkToSearch];
+                    $stats[] = ["Dataset"=>$dataset,"Title"=>Language::get($row["name"]),"FirstLine"=>Language::get("Spolu").": ","FirstLineNumber"=>number_format($row["all"],0,","," "),"Last"=>date("d.m.Y",$row["last"]),"LinkToSearch"=>$LinkToSearch];
                 break;
             }
             

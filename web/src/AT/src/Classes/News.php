@@ -11,68 +11,93 @@ use AsyncWeb\Text\Texts;
 class News{
     
     public function getAllNews($count, $lang = "all"){
+        
+        $time = date("ym");
+
+
         $tables = [
-            "cz"=>"dev02fast.cz_spravy_texts_clean",
-            "sk"=>"dev02fast.sk_spravy_texts_clean",
-            "en"=>"dev02fast.en_spravy_texts_clean",
+            "cz"=>["dev02fast.cs_${time}_news_texts","dev02fast.cz_spravy_texts_clean"],
+            "sk"=>["dev02fast.sk_${time}_news_texts","dev02fast.sk_spravy_texts_clean"],
+            "en"=>["dev02fast.en_${time}_news_texts","dev02fast.en_spravy_texts_clean"],
         ];
         
         if(isset($tables[$lang])){
             $tables = [$lang=>$tables[$lang]];
+        }else{
+            if($lang == "cs"){
+                $tables = ["cz"=>$tables["cz"]];
+            }
         }
         
         $allnewsByTime = [];
         $done = [];
-        foreach($tables as $lang=>$table){
-            $res = DB::qb($table,["limit"=>$count,"order"=>["time"=>"desc"]]);
-            while($item = DB::f($res)){
-                $web = $item["web"];
-                if($pos = strpos($web,"#")){
-                    $web = substr($web,0,$pos);
-                    $item["web"] = $web;
-                }
-                if($pos = strpos($web,"?utm_source")){
-                    $web = substr($web,0,$pos);
-                    $item["web"] = $web;
-                }
-                $web = str_replace("http://","",$web);
-                $web = str_replace("https://","",$web);
-                $web = substr($web,0,strpos($web,"/"));
-                $item["Source"] = $web;
-                
-                $arr = explode(".",$web);
-                switch($lang){
-                    case "sk":
-                        $item["lang"] = "sk";
-                    break;
-                    case "cz":
-                        $item["lang"] = "cs";
-                    break;
-                    default:
-                        $item["lang"] = "en";
-                    break;
-                }
-                
+        foreach($tables as $lang=>$tables2){
+            foreach($tables2 as $table){
 
-                if(isset($done[$item["web"]])) continue;
-                $done[$item["web"]] = true;
-                if(!isset($allnewsByTime[$item["time"]])){
-                    $allnewsByTime[$item["time"]] = [];
-                }
+                $res = DB::qb($table,["limit"=>$count,"order"=>["time"=>"desc"]]);
+                while($item = DB::f($res)){
+                    $web = $item["web"];
+                    if($pos = strpos($web,"#")){
+                        $web = substr($web,0,$pos);
+                        $item["web"] = $web;
+                    }
+                    if($pos = strpos($web,"?utm_source")){
+                        $web = substr($web,0,$pos);
+                        $item["web"] = $web;
+                    }
+                    $web = str_replace("http://","",$web);
+                    $web = str_replace("https://","",$web);
+                    $web = substr($web,0,strpos($web,"/"));
+                    $item["Source"] = $web;
+                    
+                    $arr = explode(".",$web);
+                    switch($lang){
+                        case "sk":
+                            $item["lang"] = "sk";
+                        break;
+                        case "cz":
+                        case "cs":
+                            $item["lang"] = "cs";
+                        break;
+                        default:
+                            $item["lang"] = "en";
+                        break;
+                    }
+                    
+
+                    if(isset($done[$item["web"]])) continue;
+                    $done[$item["web"]] = true;
+                    if(!isset($allnewsByTime[$item["time"]])){
+                        $allnewsByTime[$item["time"]] = [];
+                    }
+                    
+                    $allnewsByTime[$item["time"]][] = $item;
                 
-                $allnewsByTime[$item["time"]][] = $item;
-            
+                }
             }
         }
         krsort($allnewsByTime);
         return $allnewsByTime;
     }
-    public function getNewsByTime($search){
+    public function getNewsByTime($search, $lang = "all"){
         $tables = [
             "dev02fast.cs_word_combinations_1_out","dev02fast.cs_word_combinations_2_out","dev02fast.cs_word_combinations_3_out",
             "dev02fast.sk_word_combinations_1_out","dev02fast.sk_word_combinations_2_out","dev02fast.sk_word_combinations_3_out",
             "dev02fast.en_word_combinations_1_out","dev02fast.en_word_combinations_2_out","dev02fast.en_word_combinations_3_out",
         ];
+        switch(substr($lang,0,2)){
+            case "cs":
+            case "cz":
+                $tables = ["dev02fast.cs_word_combinations_1_out","dev02fast.cs_word_combinations_2_out","dev02fast.cs_word_combinations_3_out"];
+            break;
+            case "en":
+                $tables = ["dev02fast.en_word_combinations_1_out","dev02fast.en_word_combinations_2_out","dev02fast.en_word_combinations_3_out"];
+            break;
+            case "sk":
+                $tables = ["dev02fast.sk_word_combinations_1_out","dev02fast.sk_word_combinations_2_out","dev02fast.sk_word_combinations_3_out"];
+            break;
+            
+        }
         
         $allnewsByTime = [];
         $done = [];
@@ -141,9 +166,14 @@ class News{
         $from = null,
         $until = null
         ){
+            
+        $time = date("ym");
         $lang = "cs";
         if($cty == "sk") $lang = $cty;
         if($cty == "en") $lang = $cty;
+        $newstable = "dev02fast.${cty}_spravy_texts_clean";
+        if($cty == "en"){ $newstable = "dev02fast.${lang}_${time}_news_texts";}
+        
         
         $min = 100;
         switch($type){
@@ -196,7 +226,7 @@ class News{
         
         //echo("refresh");
         if($from && $until){
-            $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array(
+            $res = \AsyncWeb\DB\DB::qb($newstable,array(
                 "order"=>array("time"=>"desc"),
                 "where"=>[
                     ["col"=>"time","op"=>"gt","value"=>$from],
@@ -204,9 +234,8 @@ class News{
                                         
                     ],
             ));
-
         }else{
-            $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array(
+            $res = \AsyncWeb\DB\DB::qb($newstable,array(
                 "order"=>array("od"=>"desc"),
                 "where"=>[["col"=>"time","op"=>"gt","value"=>$t]],
             ));
@@ -214,7 +243,7 @@ class News{
         }
         $count = DB::num_rows($res);
         if($count < $min){
-            $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array(
+            $res = \AsyncWeb\DB\DB::qb($newstable,array(
                 "limit"=>$min,
                 "order"=>array("od"=>"desc")
             ));
@@ -222,17 +251,14 @@ class News{
         }
         $ret = [];
         while($row=\AsyncWeb\DB\DB::f($res)){
-             $result = \ProcessHtml2Text::ProcessWords($row["web"],$row["text"],$lang,true,true);
+            //echo $row["id"]."\n";
+             $result = \ProcessHtml2Text::ProcessWords($row["web"],$row["headline"]." ".$row["text"],$lang,true,true);
              foreach($result as $k=>$v){
                  if($v > 5){
                      $result[$k] = 5;
                  }
              }
-             if($result["Lidovky"]){
-                 //var_dump($row["headline"]);
-                 //var_dump($row["web"]);
-                 //exit;
-             }
+             
              foreach($result as $k=>$v){
                  if(isset($ret[$k])){
                      $ret[$k] += $v;
@@ -244,24 +270,15 @@ class News{
                      }
                  }
              }
-             $result = \ProcessHtml2Text::ProcessWords($row["web"],$row["headline"],$lang,true,true);
-             foreach($result as $k=>$v){
-                 if(isset($ret[$k])){
-                     $ret[$k] += $v;
-                 }else{
-                     if(isset($ret[$k])){
-                        $ret[$k] = $v + $ret[$k];
-                     }else{
-                         $ret[$k] = $v;
-                     }
-                 }
-             }
+             
+            if($result["Epstein"]){
+                var_dump($row["web"]);
+            }
         }
-
         $old = [];
         if($processHistory){
             //var_dump(round($count*$countMultiplier));
-            $res = \AsyncWeb\DB\DB::qb("dev02fast.${cty}_spravy_texts_clean",array("limit"=>round($count*$countMultiplier),"offset"=>$count,"order"=>array("od"=>"desc")));
+            $res = \AsyncWeb\DB\DB::qb($newstable,array("limit"=>round($count*$countMultiplier),"offset"=>$count,"order"=>array("od"=>"desc")));
             while($row=\AsyncWeb\DB\DB::f($res)){
                  $result = \ProcessHtml2Text::ProcessWords($row["web"],$row["text"],$lang,true,true);
                  foreach($result as $k=>$v){

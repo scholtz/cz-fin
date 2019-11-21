@@ -7,7 +7,7 @@ use AsyncWeb\DB\DB;
 use AsyncWeb\Text\Texts;
 
 class GoPay extends ProformaInvoice{
-    protected $requiresAuthenticatedUser = true;
+    protected $requiresAuthenticatedUser = false;
     public function postProcess(){
         
         // full configuration
@@ -21,26 +21,37 @@ class GoPay extends ProformaInvoice{
             'timeout' => 60
         ]);
         
-        if(!\AsyncWeb\Objects\User::getEmailOrId()){
+        $email = \AsyncWeb\Objects\User::getEmailOrId();
+        if(URLParser::v("OrderId")){
+            $order = DB::gr("fin_orders",["id2"=>URLParser::v("OrderId")]);
+            $email = $order["email"];
+        }
+        
+        if(!$email){
             \AsyncWeb\Text\Msg::mes(\AsyncWeb\System\Language::get("Před provedením platby se prosím zaregistrujte abychom mohli spolehlivě spárovat Vaši platbu s Vaším účtem. Děkujeme"));
             $this->template = " ";
+            $this->requiresAuthenticatedUser = true;
             return true; // sprocesovana
         }
         
-        if($email = \AsyncWeb\Objects\User::getEmailOrId()){
-            $client = DB::gr("user_invoicedata",["email"=>\AsyncWeb\Objects\User::getEmailOrId()]);
+        if($email){
+            $client = DB::gr("user_invoicedata",["email"=>$email]);
             if(!$client){
-                DB::u("user_invoicedata",md5(uniqid()),["name"=>\AsyncWeb\Objects\User::getEmailOrId(),"email"=>\AsyncWeb\Objects\User::getEmailOrId()]);
-                $client = DB::gr("user_invoicedata",["email"=>\AsyncWeb\Objects\User::getEmailOrId()]);
+                DB::u("user_invoicedata",md5(uniqid()),["name"=>$email,"email"=>$email]);
+                $client = DB::gr("user_invoicedata",["email"=>$email]);
             }
-            
             $usr = DB::gr("users",["email"=>$email]);
-            
         }        
         
-        $orderMgr = new \AT\Classes\Order();
-        $orderInfo = $orderMgr->getLastOrder();
-        $order = $orderMgr->getInvoiceData($orderInfo["id2"]);
+        $orderMgr = new \AT\Classes\Order($email);
+        
+        if(URLParser::v("OrderId")){
+            $order = $orderMgr->getInvoiceData(URLParser::v("OrderId"));
+        }else{
+            $orderInfo = $orderMgr->getLastOrder();
+            $order = $orderMgr->getInvoiceData($orderInfo["id2"]);
+        }
+        
         
         $amount = $order["totalAmount"]*100;
         $paymentInfo = [

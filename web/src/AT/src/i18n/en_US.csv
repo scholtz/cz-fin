@@ -86,3 +86,84 @@ Vyhledat,Search,/AT/src/Block/Header.php
 "Vyžaduje se min Fin PERSONAL licence","Minimum Fin PERSONAL license is required to show this information",/AT/src/Block/Nace.php
 
 "Statistiky dat - naše datové sady","Data statistics - our datasets"
+"promo_personal_to_premium","Did you know that with <a href=""/Buy/type=premium""> Fin PREMIUM </a> you can have 4 additional user accounts, 9 more daily expression monitors, 9 more monthly expression monitors, and use LIVE media monitoring? You can also download our CSV datasets with <a href=""/Buy/type=premium""> Fin PREMIUM </a> license."
+"promo_premium_to_enterprise","Did you know that with <a href=""/Buy/type=enterprise""> Fin ENTERPRISE </a> you can have an unlimited number of user accounts and unlimited media monitoring?"
+
+"Roční","Annual"
+"Měsíční","Monthly"
+"Seznam použitých datových zdrojů","List of used government data sources"
+
+"Registr spolehlivosti plátců DPH","Register of reliability of VAT payers [ČR]",/AT/src/Classes/PageBuilder.php
+"CZ-FIN Rating firem","CZ-FIN company rating",/AT/src/Classes/PageBuilder.php
+ARES,ARES,/AT/src/Classes/PageBuilder.php
+"Registr ekonomických subjektů","Register of economic subjects [ČR]",/AT/src/Classes/PageBuilder.php
+"Datové schránky","Data boxes",/AT/src/Classes/PageBuilder.php
+Faktury,Invoices,/AT/src/Classes/PageBuilder.php
+Smlouvy,Contracts,/AT/src/Classes/PageBuilder.php
+"Registr smlouv","Register of contracts [ČR]",/AT/src/Classes/PageBuilder.php
+"Výměry zemědělských oblastí","Areas of agricultural areas",/AT/src/Classes/PageBuilder.php
+Objednávky,Orders,/AT/src/Classes/PageBuilder.php
+Pokuty,Fees,/AT/src/Classes/PageBuilder.php
+Rozhodnutí,Decisions,/AT/src/Classes/PageBuilder.php
+Prostory,Places,/AT/src/Classes/PageBuilder.php
+Šetrení,Investigations,/AT/src/Classes/PageBuilder.php
+"Seznamy podnikatelov","Lists of businesses",/AT/src/Classes/PageBuilder.php
+"Státne instituce","Government institutions",/AT/src/Classes/PageBuilder.php
+Šport,Sport,/AT/src/Classes/PageBuilder.php
+Školy,Schools,/AT/src/Classes/PageBuilder.php
+Granty,Grants,/AT/src/Classes/PageBuilder.php
+IČO,Company identifier,/AT/src/Classes/PageBuilder.php
+Adresa,Address,/AT/src/Classes/PageBuilder.php
+"Datum zápisu","Date of registration",/AT/src/Classes/PageBuilder.php
+"Datum vzniku","Creation date",/AT/src/Classes/PageBuilder.php
+"Datum výmazu","Date of deletion",/AT/src/Classes/PageBuilder.php
+"Monitoring médií","Media monitoring",/AT/src/Classes/PageBuilder.php
+"v médiích","in medias",/AT/src/Classes/PageBuilder.php
+"Jednatel","Director",/AT/src/Classes/PageBuilder.php
+"Rating firmy","Company rating",/AT/src/Classes/PageBuilder.php
+"percentil v ČR","percentile in the Czech Republic",/AT/src/Classes/PageBuilder.php
+"Hlidac Statu","Hlidac Statu",/AT/src/Classes/PageBuilder.php
+Katalog-Firem,Katalog-Firem,/AT/src/Classes/PageBuilder.php
+K-F,K-F,/AT/src/Classes/PageBuilder.php
+Zive-Firmy,Zive-Firmy,/AT/src/Classes/PageBuilder.php
+ABC,ABC,/AT/src/Classes/PageBuilder.php
+Firmy.cz,Firmy.cz,/AT/src/Classes/PageBuilder.php
+MERK,MERK,/AT/src/Classes/PageBuilder.php
+Kurzy.cz,Kurzy.cz,/AT/src/Classes/PageBuilder.php
+"Kontakty a další zdroje","Contacts and other resources",/AT/src/Classes/PageBuilder.php
+"Katalogy firem","Catalogs of companies",/AT/src/Classes/PageBuilder.php
+"Webstránka","Website",/AT/src/Classes/PageBuilder.php
+"Telefón","Phone",/AT/src/Classes/PageBuilder.php
+"Email","Email",/AT/src/Classes/PageBuilder.php
+"Vyžaduje se PREMIUM účet","Requires at leas Fin PERSONAL license",/AT/src/Classes/PageBuilder.php
+"Činnosti","Activities",/AT/src/Classes/PageBuilder.php
+"ZDROJ","SOURCE",/AT/src/Classes/PageBuilder.php
+
+"Spolu","Count" 
+"Poslední změna","Last change"
+"Počet objednávok","Number of orders"
+"Hodnota objednávek","Orders value"
+"Počet smlouv","Contracts count"
+"Hodnota smluv","Contracts value"
+"Hodnota faktur","Invoiced value"
+"Počet faktúr","Number of invoices"
+"Aktívnych","Current count"
+"Aktuálne v likvidaci","In liquidation"
+"Hodnota mimo registra","Contracts outside of register"
+
+"Generální ředitel","CEO"
+
+"record-in-unreliable-vat-register","WARNING! The company has an entry in the register of unreliable VAT payers"
+"was-record-in-unreliable-vat-register","WARNING! The company had an entry in the register of unreliable VAT payers"
+
+"Media monitoring statistics in last 7 days","Media monitoring statistics in last 7 days"
+"We have processed %count% articles in last 7 days. Data sources below are sorted by the number of processed articles.","We have processed <b>%count%</b> articles in last 7 days. Data sources below are sorted by the number of processed articles."
+"Language-sk","Slovak media sources"
+"Language-en","English media sources"
+"Language-cz","Czech media sources"
+"Language-ja","Japan media sources"
+"Language-ru","Russian media sources"
+"Language-de","German media sources"
+
+"Media monitoring statistics","Media monitoring statistics"
+"Government data statistics","Government data statistics"

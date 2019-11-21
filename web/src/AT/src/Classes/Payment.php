@@ -40,7 +40,7 @@ class Payment{
                 $code = "25";
         }
         $y = date("y");
-        $row = DB::qbr("fin_orders",["cols"=>["c"=>"max(vs)"],"where"=>["currency"=>$currency]]);
+        $row = DB::qbr("out.fin_orders",["cols"=>["c"=>"max(vs)"],"where"=>["currency"=>$currency]]);
         if($row["c"]){
            $latest = $row["c"];
         

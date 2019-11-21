@@ -37,7 +37,7 @@ class Tickets extends \AsyncWeb\DefaultBlocks\Form{
                array("name"=>Language::get("Popis"),"form"=>["type"=>"textarea"],"data"=>array("col"=>"initmsg","datatype"=>"text"),"usage"=>array("MFi","MFu","DBVs","DBVe")),
             ),
             "texts"=>array("no_data"=>Language::get("Veľmi si cením spätnú väzbu. Napíšte nám..")),
-             "bootstrap"=>"1",
+             "bootstrap"=>"4",
              "where"=>array("email"=>\AsyncWeb\Objects\User::getEmailOrId()),
              "show_export"=>true,
              "iter"=>array("per_page"=>"30"),

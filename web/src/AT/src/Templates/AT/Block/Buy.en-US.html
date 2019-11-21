@@ -1,0 +1,66 @@
+<h1>Buy license</h1>
+{{{Promo}}}
+<p>
+<a class="btn btn-xs btn-light float-right m-1" href="/ApplyBonus/type={{type}}" >Use discount code</a>
+<a class="btn btn-xs btn-light float-right m-1" href="/ProformaInvoice/OrderId={{OrderId}}/Send=1" >Send pro-forma invoice</a>
+
+{{#Note}}<h3>{{Note}}</h3>{{/Note}}
+
+You can download pro-forma invoice <a href="/ProformaInvoice/OrderId={{OrderId}}">here</a>. After payment to our bank account, we will issue you the invoice.</p>
+
+<table class="table">
+{{#HasDiscount}}
+
+<tr><th>Amount:</th><td>{{Amount}} {{Currency}}</td></tr>
+<tr><th>Discount:</th><td>{{Discount}} {{Currency}}</td></tr>
+<tr><th>Total amount:</th><td><b>{{TotalAmount}}</b> {{Currency}}</td></tr>
+
+{{/HasDiscount}}
+
+{{^HasDiscount}}
+<tr><th>Amount:</th><td><b>{{Amount}}</b> {{Currency}}</td></tr>
+{{/HasDiscount}}
+{{#GoPayAllowedUser}}
+<tr><th>Pay through the GoPay:</th><td>
+<a class="btn btn-xs btn-light" href="/GoPay/OrderId={{OrderId}}" ><img src="/img/gopay.png" title="Pay through the GoPay" alt="Pay through the GoPay"></a>
+
+<a class="btn btn-xs btn-light" href="/GoPay/paymenttype=card/OrderId={{OrderId}}" >Card</a>
+|
+<a class="btn btn-xs btn-light" href="/GoPay/paymenttype=bank/OrderId={{OrderId}}" >Bank transfer</a>
+|
+<a class="btn btn-xs btn-light" href="/GoPay/paymenttype=bitcoin/OrderId={{OrderId}}" >Bitcoin</a>
+
+</td></tr>
+{{/GoPayAllowedUser}}
+<tr><th>VS:</th><td>{{VS}}</td></tr>
+<tr><th>SS:</th><td>{{SS}}</td></tr>
+{{#Name}}<tr><th>Note:</th><td>{{Note}}</td></tr>{{/Name}}
+<tr><th>Pay to account:</th><td>{{Account}}</td></tr>
+<tr><th>QR Payment</th><td><img src="data:image/png;base64,{{QRB64}}" title="{{QRCode}}" class="img-thumbnail" width="200px"></td></tr>
+<tr><th>Currency</th><td>
+  <form method="post" action="/Buy">
+    <div class="input-group mb-3">
+      <select class="form-control" name="currency">
+      {{#Currencies}}<option value="{{Value}}"{{Selected}}>{{Name}}</option>{{/Currencies}}
+      </select>
+      <div class="input-group-append">
+        <input type="submit" class="btn btn-outline-primary" type="button" value="Select">
+      </div>
+    </div>
+  </form>
+
+</td></tr>
+<tr><th>Invoicing period</th><td>
+  <form method="post" action="/Buy">
+    <div class="input-group mb-3">
+      <select class="form-control" name="period">
+      {{#Periods}}<option value="{{Value}}"{{Selected}}>{{Name}}</option>{{/Periods}}
+      </select>
+      <div class="input-group-append">
+        <input type="submit" class="btn btn-outline-primary" type="button" value="Select">
+      </div>
+    </div>
+  </form>
+
+</td></tr>
+</table>

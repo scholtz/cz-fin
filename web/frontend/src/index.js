@@ -9,6 +9,7 @@ import "./jquery/app.js";
 import "./jquery/fb-pixel.js";
 import "./jquery/smartsupp.js";
 import "./jquery/fa.js";
+import "./jquery/etarget.js";
 
 import 'bootstrap';
 import './css/style.css';

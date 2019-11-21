@@ -33,8 +33,8 @@ class MonitorDayCI extends \AsyncWeb\DefaultBlocks\Form{
 			"uid"=>"watchci",
 			"table" => "dev02.spravy_watch_day",
 			"col" => array( 	
-                array("name"=>"Language","form"=>array("type"=>"select",),"texts"=>array("default"=>"sk"),"data"=>array("col"=>"lang"),"usage"=>array("MFi","MFu","MFd","DBVs","DBVe"),"filter"=>array("type"=>"option","option"=>array(
-				   "sk"=>"Slovak","cs"=>"Czech","en"=>"English"
+                array("name"=>"Filter Language","form"=>array("type"=>"select",),"texts"=>array("default"=>"all"),"data"=>array("col"=>"lang"),"usage"=>array("MFi","MFu","MFd","DBVs","DBVe"),"filter"=>array("type"=>"option","option"=>array(
+				   "all"=>"Any language","sk"=>"Slovak","cs"=>"Czech","en"=>"English"
 				),),),/**/
 				//array("name"=>"Clear-Text","data"=>array("col"=>"t_clear"),"usage"=>array("DBVs","DBVe")),
 				array("name"=>"Text","data"=>array("col"=>"t_ci"),"usage"=>array("MFi","MFu","DBVs","DBVe")),

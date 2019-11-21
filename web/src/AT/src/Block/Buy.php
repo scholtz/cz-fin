@@ -73,15 +73,15 @@ class Buy extends \AsyncWeb\Frontend\Block{
         
         $promo = "";
         if($order["type"] == "personal"){
-            $promo = '<div class="alert alert-info"><i class="fa fa-question-circle" aria-hidden="true"></i> <i class="fa fa-question-circle" aria-hidden="true"></i> <i class="fa fa-question-circle" aria-hidden="true"></i> Věděli jste, že s účtem <a href="/Buy/type=premium">Fin PREMIUM</a> můžete mít 4 další uživatelské účty, o 9 denních monitorů výrazů více, o 9 monitorů měsíčních výrazů více a používat ŽIVÉ monitorování médií? S účtem <a href="/Buy/type=premium">Fin PREMIUM</a> si také můžete stáhnout naše CSV datové sady.</div>';
+            $promo = '<div class="alert alert-info"><i class="fa fa-question-circle" aria-hidden="true"></i> <i class="fa fa-question-circle" aria-hidden="true"></i> <i class="fa fa-question-circle" aria-hidden="true"></i> '.Language::get("promo_personal_to_premium").'</div>';
         }
         if($order["type"] == "premium"){
-            $promo = '<div class="alert alert-info"><i class="fa fa-question-circle" aria-hidden="true"></i> <i class="fa fa-question-circle" aria-hidden="true"></i> <i class="fa fa-question-circle" aria-hidden="true"></i> Věděli jste, že s účtem <a href="/Buy/type=enterprise">Fin ENTERPRISE</a> můžete mít nemezený počet uživatelských účtů a neomezené monitorování médií?</div>';
+            $promo = '<div class="alert alert-info"><i class="fa fa-question-circle" aria-hidden="true"></i> <i class="fa fa-question-circle" aria-hidden="true"></i> <i class="fa fa-question-circle" aria-hidden="true"></i> '.Language::get("promo_premium_to_enterprise").'</div>';
         }
         
         
 
-        $qrCode = new \Endroid\QrCode\QrCode($code = 'SPD*1.0*ACC:SK3983300000002801709852*AM:'.number_format($data["totalAmount"],2,".","").'*CC:'.$data["currency"].'*MSG:'.$data["msg"].'*X-VS:'.$data["vs"].'*X-SS:'.$data["ss"]);
+        $qrCode = new \Endroid\QrCode\QrCode($code = 'SPD*1.0*ACC:'.$data["iban"].'*AM:'.number_format($data["totalAmount"],2,".","").'*CC:'.$data["currency"].'*MSG:'.$data["msg"].'*X-VS:'.$data["vs"].'*X-SS:'.$data["ss"]);
         
         $currencies = [
             ["Name"=>"EUR","Value"=>"EUR","Selected"=>$order["currency"] == "EUR" ? " selected":""],
@@ -112,6 +112,7 @@ class Buy extends \AsyncWeb\Frontend\Block{
             "OrderId"=>$data["id2"],
             "Currencies"=>$currencies,
             "Periods"=>$periods,
+            "OrderId"=>$order["id2"],
             ]);
         
 	}

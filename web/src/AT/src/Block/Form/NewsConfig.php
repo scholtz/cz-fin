@@ -24,6 +24,7 @@ class NewsConfig extends \AsyncWeb\DefaultBlocks\Form{
 				array("name"=>"Perex Rules","form"=>["type"=>"textarea"],"data"=>array("col"=>"perex"),"usage"=>array("MFi","MFu")),
 				array("name"=>"Text Rules","form"=>["type"=>"textarea"],"data"=>array("col"=>"rules"),"usage"=>array("MFi","MFu")),
 				array("name"=>"RemoveBeforeProcessing", "form"=>["type"=>"textarea"],"data"=>array("col"=>"preprocessor"),"usage"=>array("MFi","MFu")),
+				array("name"=>"Text Replace", "form"=>["type"=>"textarea"],"data"=>array("col"=>"textreplace"),"usage"=>array("MFi","MFu")),
 				array("name"=>"LastChange","data"=>array("col"=>"od"),"filter"=>array("type"=>"date","format"=>"c"),"usage"=>array("DBVs","DBVe")),
 			),
             "order"=>array("od"=>"desc"),

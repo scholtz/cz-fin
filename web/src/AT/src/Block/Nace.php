@@ -124,7 +124,7 @@ class Nace extends \AsyncWeb\Frontend\Block{
         \AsyncWeb\Frontend\BlockManagement::get("Content_HTMLHeader_Title")->changeData(array("title" => "$currenttext | CZ-FIN"));
 
         if(DB::num_rows($res)){
-            $ret .= '<div class="card"><div class="card-header">Kategorie činností '.$currenttext.'</div><div class="list-group">';
+            $ret .= '<div class="card"><div class="card-header">'.Language::get("Kategorie činností").': '.$currenttext.'</div><div class="list-group">';
             while($row=DB::f($res)){
                 $i++;
                 $text = $row["CZ_text"];

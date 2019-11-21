@@ -26,6 +26,9 @@
 
 {{#Keywords.0}}
 <div class="col-12" id="keywords">
+
+<a href="/R/c=CHRISTMAS2019" class="float-right d-none d-sm-block"><img style="height:300px; width:300px;" alt="Christmas promo" src="/img/discount-en-christmas2019.jpg" class="img-thumbnail"></a>
+
 {{#Keywords}} {{{html}}} . {{/Keywords}}
 
 <label for="keywords" class="col-form-label">Legend: Size of the word means how many words occured in watched period. Color more to <span style="color:#00ff00">light green</span> means fresh news, a <span style="color:#ff0000">light red</span> - news that was in the period before watched period and is not present in the current watch period. Big <span style="color: #008800">green font</span> means important news which is still present in the news.
@@ -48,11 +51,21 @@
         <th class="d-none d-sm-table-cell">Source</th>
         <th>Time</th>
         <th>Title</th>
+        {{#IsAdmin}}
+        <th>Check</th>
+        {{/IsAdmin}}
         </tr>
         </thead>
         <tbody>
         {{#News}}
-        <tr><td class="d-none d-sm-table-cell">{{Source}}</td><td>{{Time}}</td><td><a target="_blank" href="{{web}}" lang="{{lang}}">{{headline}}</a></td></tr>
+        <tr>
+            <td class="d-none d-sm-table-cell">{{Source}}</td>
+            <td>{{Time}}</td>
+            <td><a target="_blank" href="{{web}}" lang="{{lang}}">{{headline}}</a></td>        
+            {{#IsAdmin}}
+            <td><a class="btn btn-light btn-xs" href="/Admin_News/id={{id2}}/lang={{lang}}" lang="{{lang}}">Check</a></td>
+            {{/IsAdmin}}
+        </tr>
         {{/News}}
         </tbody>
         </table>

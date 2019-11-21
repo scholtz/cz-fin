@@ -27,6 +27,7 @@ class AdminLicenceOverview extends LicenceOverview {
         $this->formSettings["col"]["btn"]["filter"]["function"]="PHP::\\AT\\Block\\Form\\AdminLicenceOverview::getUsersCount()";
         $this->formSettings["col"]["customprice"] = array("name"=>Language::get("Custom price"),"data"=>array("col"=>"customprice"),"usage"=>array("MFi","MFu","DBVs","DBVe"));
         $this->formSettings["col"]["customperiod"] = array("name"=>Language::get("Custom period"),"data"=>array("col"=>"customperiod"),"usage"=>array("MFi","MFu","DBVs","DBVe"));
+        //$this->formSettings["col"]["slackwebhooks"] = array("name"=>Language::get("Slack webhook"),"data"=>array("col"=>"slackwebhooks"),"usage"=>array("MFi","MFu"));
         
     }
     public function postProcess(){

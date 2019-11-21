@@ -183,4 +183,23 @@ th, td{
 </table>
 
 <p style="text-align:center">Uhraďte prosím částku <b>{{ta}}</b> {{Currency}} na bankovní účet <b>{{Bank}}</b>. Po úhradě Vám vystavíme řádnou fakturu.</p>
+
+
+<p>Alternativní formy platby:</p>
+<table style="width:100%;border:1px solid gray; padding: 10px; vertical-align: top">
+<tr><th style="width:25%">QR Platba</th><th style="width:25%">Platba kartou</th><th style="width:25%">Bankou</th><th style="width:25%">Bitcoinem</th></tr>
+<tr>
+<td><img src="data:image/png;base64,{{QRB64}}" title="{{QRCode}}" class="img-thumbnail" width="200px" height="200px"></td>
+<td><a class="btn btn-xs btn-light" href="https://www.cz-fin.com/GoPay/paymenttype=card/OrderId={{OrderId}}">
+<img src="https://www.cz-fin.com/img/logo/visa_or_mastercard.jpg" height="200px">
+</a></td>
+<td><a class="btn btn-xs btn-light" href="https://www.cz-fin.com/GoPay/paymenttype=bank/OrderId={{OrderId}}">
+<img src="https://www.cz-fin.com/img/logo/gopay.jpg" height="200px">
+</a></td>
+<td><a class="btn btn-xs btn-light" href="https://www.cz-fin.com/GoPay/paymenttype=bitcoin/OrderId={{OrderId}}">
+<img src="https://www.cz-fin.com/img/logo/bitcoin.png" height="200px">
+</a></td>
+</tr>
+</table>
+
 </div>

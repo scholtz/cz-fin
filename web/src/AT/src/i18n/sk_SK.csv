@@ -73,5 +73,100 @@ Statistiky,Štatistiky,/AT/src/Block/Header.php
 "Seznam použitých datových zdrojů","Zoznam použitých dátových zdrojov",/AT/src/Block/Header.php
 "Název nebo IČO společnosti","Názov alebo IČO spoločnosti",/AT/src/Block/Header.php
 Vyhledat,Vyhľadať,/AT/src/Block/Header.php
-"Prehled činností","Prehľad podľa činností",/AT/src/Block/Header.php
+"Prehled činností","Prehľad firiem podľa činností",/AT/src/Block/Header.php
 "Kategorie činností","Kategórie činností",/AT/src/Block/Nace.php
+"Companies in this category","Spoločností v tejto kategórii",/AT/src/Block/Nace.php
+"Firma","Firma",/AT/src/Block/Nace.php
+"Rating","Rating",/AT/src/Block/Nace.php
+"Zaměstnanci","Zamestnanci",/AT/src/Block/Nace.php
+"Web","Web",/AT/src/Block/Nace.php
+"Tel","Tel",/AT/src/Block/Nace.php
+"Email","Email",/AT/src/Block/Nace.php
+"Vyžaduje se licence","Vyžaduje sa licencia",/AT/src/Block/Nace.php
+"Vyžaduje se min Fin PERSONAL licence","Vyžaduje se minimálne Fin PERSONAL licencia",/AT/src/Block/Nace.php
+
+"Statistiky dat - naše datové sady","Štatistiky údajov - naše dátové sady"
+"Firem z DB ARES: %num%","Firiem z DB ARES: %num%"
+"Spolu: %num%","Spolu: %num%"
+"ICO s NACE","IČO s NACE"
+"Spracovaná pôda","Spracovaná pôda"
+"Počet spracovaných parciel: ","Počet spracovaných parciel: "
+"promo_personal_to_premium","Veděli ste, že s účtom <a href=""/Buy/type=premium"">Fin PREMIUM</a> môžete mať 4 dalšie užívateľské účty, o 9 denních monitorov výrazov viac, o 9 monitorov mesačných výrazov viac a používať ŽIVÉ monitorovánie médií? S účtom <a href=""/Buy/type=premium"">Fin PREMIUM</a> si môžete stiahnuť naše CSV dátové sady."
+"promo_premium_to_enterprise","Veděli ste, že s účtom <a href=""/Buy/type=enterprise"">Fin ENTERPRISE</a> môžete mať neobmedzený počet užívateľských účtov a neobmedzené monitorovanie médií?"
+"Roční","Ročná"
+"Měsíční","Mesačná"
+
+
+"Registr spolehlivosti plátců DPH","Register spoľahlivosti platcov DPH [ČR]",/AT/src/Classes/PageBuilder.php
+"CZ-FIN Rating firem","CZ-FIN Rating firiem",/AT/src/Classes/PageBuilder.php
+ARES,ARES,/AT/src/Classes/PageBuilder.php
+"Registr ekonomických subjektů","Register ekonomických subjektov [ČR]",/AT/src/Classes/PageBuilder.php
+"Datové schránky","Dátové schránky",/AT/src/Classes/PageBuilder.php
+Faktury,Faktúry,/AT/src/Classes/PageBuilder.php
+Smlouvy,Zmluvy,/AT/src/Classes/PageBuilder.php
+"Registr smlouv","Register zmluv [ČR]",/AT/src/Classes/PageBuilder.php
+"Výměry zemědělských oblastí","Výmery poľnohospodárskych oblastí",/AT/src/Classes/PageBuilder.php
+Objednávky,Objednávky,/AT/src/Classes/PageBuilder.php
+Pokuty,Pokuty,/AT/src/Classes/PageBuilder.php
+Rozhodnutí,Rozhodnutia,/AT/src/Classes/PageBuilder.php
+Prostory,Priestory,/AT/src/Classes/PageBuilder.php
+Šetrení,Šetrenia,/AT/src/Classes/PageBuilder.php
+"Seznamy podnikatelov","Zoznamy podnikateľov",/AT/src/Classes/PageBuilder.php
+"Státne instituce","Štátne inštitúcie",/AT/src/Classes/PageBuilder.php
+Šport,Šport,/AT/src/Classes/PageBuilder.php
+Školy,Školy,/AT/src/Classes/PageBuilder.php
+Granty,Granty,/AT/src/Classes/PageBuilder.php
+IČO,IČO,/AT/src/Classes/PageBuilder.php
+Adresa,Adresa,/AT/src/Classes/PageBuilder.php
+"Datum zápisu","Dátum zápisu",/AT/src/Classes/PageBuilder.php
+"Datum vzniku","Dátum vzniku",/AT/src/Classes/PageBuilder.php
+"Datum výmazu","Dátum výmazu",/AT/src/Classes/PageBuilder.php
+"Monitoring médií","Monitoring médií",/AT/src/Classes/PageBuilder.php
+"v médiích","v médiách",/AT/src/Classes/PageBuilder.php
+"Jednatel","Jednateľ",/AT/src/Classes/PageBuilder.php
+"Rating firmy","Rating firmy",/AT/src/Classes/PageBuilder.php
+"percentil v ČR","percentil v ČR",/AT/src/Classes/PageBuilder.php
+"Hlidac Statu","Hlidac Statu",/AT/src/Classes/PageBuilder.php
+Katalog-Firem,Katalog-Firem,/AT/src/Classes/PageBuilder.php
+K-F,K-F,/AT/src/Classes/PageBuilder.php
+Zive-Firmy,Zive-Firmy,/AT/src/Classes/PageBuilder.php
+ABC,ABC,/AT/src/Classes/PageBuilder.php
+Firmy.cz,Firmy.cz,/AT/src/Classes/PageBuilder.php
+MERK,MERK,/AT/src/Classes/PageBuilder.php
+Kurzy.cz,Kurzy.cz,/AT/src/Classes/PageBuilder.php
+"Kontakty a další zdroje","Kontakty a dalšie zdroje",/AT/src/Classes/PageBuilder.php
+"Katalogy firem","Katalógy firiem",/AT/src/Classes/PageBuilder.php
+"Webstránka","Webstránka",/AT/src/Classes/PageBuilder.php
+"Telefón","Telefón",/AT/src/Classes/PageBuilder.php
+"Email","Email",/AT/src/Classes/PageBuilder.php
+"Vyžaduje se PREMIUM účet","Vyžaduje se PREMIUM účet",/AT/src/Classes/PageBuilder.php
+"Činnosti","Činnosti",/AT/src/Classes/PageBuilder.php
+"ZDROJ","ZDROJ",/AT/src/Classes/PageBuilder.php
+
+"Spolu","Spolu"
+"Poslední změna","Posledná zmena"
+"Počet objednávok","Počet objednávok"
+"Hodnota objednávek","Hodnota objednávok"
+"Počet smlouv","Počet zmluv"
+"Hodnota smluv","Hodnota zmluv"
+"Hodnota faktur","Hodnota faktúr"
+"Počet faktúr","Počet faktúr"
+"Aktívnych","Aktívnych"
+"Aktuálne v likvidaci","Aktuálne v likvidaci"
+"Hodnota mimo registra","Hodnota mimo registra"
+
+"Generální ředitel","CEO"
+"record-in-unreliable-vat-register","POZOR! Spoločnosť má záznam v českom registri nespoľahlivých platcov DPH"
+"was-record-in-unreliable-vat-register","POZOR! Spoločnosť mala záznam v českom registri nespoľahlivých platcov DPH"
+
+"Media monitoring statistics in last 7 days","Štatistiky monitorovania médií za posledných 7 dní"
+"We have processed %count% articles in last 7 days. Data sources below are sorted by the number of processed articles.","Za posledných 7 dní sme spracovali <b>%count%</b> článkov. Zdroje údajov uvedené nižšie sú zoradené podľa počtu spracovaných článkov."
+"Language-sk","Slovenské mediálne zdroje"
+"Language-en","Anglické mediálne zdroje"
+"Language-cz","České mediálne zdroje"
+"Language-ja","Japonské mediálne zdroje"
+"Language-ru","Ruské mediálne zdroje"
+"Language-de","Nemecké mediálne zdroje"
+
+"Media monitoring statistics","Štatistika monitorovania médií"
+"Government data statistics","Štatistika vládnych údajov"

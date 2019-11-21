@@ -12,13 +12,13 @@
     
     
     <div class="input-group col-md-12">
-      <input type="text" class="form-control" name="text" placeholder="Vyhledat text" value="{{Term}}">
-      <button type="submit" class="btn btn-outline-primary mb-2">Vyhledat</button>
+      <input type="text" class="form-control" name="text" placeholder="Vyhľadať text" value="{{Term}}">
+      <button type="submit" class="btn btn-outline-primary mb-2">Vyhľadať</button>
     </div>
     {{#Term}}
         {{#Keywords.0}}    
         <div class="col-md-12">
-            <div class="alert alert-info">Pro vyhledávaný výraz jsme nenašli žádné výsledky. Výraz se může skládat maximálně ze tří slov a musí být vyskloňován ve tvaru jak se používá v médiích. Na diakritice - velká a malá písmena, háčky a čárky nezávisí.</div>
+            <div class="alert alert-info">Pre vyhľadávaný výraz sme nenašli žiadne výsledky. Výraz sa môže skladať maximálne z troch slov a musí byť vyskloňovaný v tvare ako sa používa v médiách. Na diakritike - veľké a malé písmená, mäkčeňoch a dĺžňoch nezávisí.</div>
         </div>
         {{/Keywords.0}}    
     {{/Term}}
@@ -28,19 +28,18 @@
 {{#Keywords.0}}
 <div class="col-12" id="keywords">
 
-<a href="/R/c=CHRISTMAS2019" class="float-right  d-none d-sm-block"><img style="height:300px; width:300px;" alt="Christmas promo" src="/img/discount-christmas20.jpg" class="img-thumbnail"></a>
+<a href="/R/c=CHRISTMAS2019" class="float-right  d-none d-sm-block"><img style="height:300px; width:300px;" alt="Christmas promo" src="/img/discount-sk-christmas2019.jpg" class="img-thumbnail"></a>
 
 {{#Keywords}} {{{html}}} . {{/Keywords}}
 
-<label for="keywords" class="col-form-label">Legenda: Velikost písma znamená četnost slov za sledované období. Barva více do <span style="color:#00ff00">světle zelena</span> znamená čerstvá novinka, a <span style="color:#ff0000">světlo červena</span> - novinka která se vyskytovala v období tense před sledovaným obdobím a už se nevyskytuje ve sledovaném období. Velké tmavě <span style="color: #008800">zelené písmo</span> znamená novinku která je důležitá a je stále aktuální.
-</label>
+<label for="keywords" class="col-form-label">Legenda: Veľkosť písma znamená frekvencia slov za sledované obdobie. Farba viac do <span style = "color:#00ff00"> svetlo zelena </span> znamená čerstvá novinka, a <span style = "color:#ff0000"> svetlo červena </span> - novinka ktorá sa vyskytovala v období tense pred sledovaným obdobím a už sa nevyskytuje v sledovanom období. Veľké tmavo <span style = "color:#008800"> zelené písmo </span> znamená novinku ktorá je dôležitá a je stále aktuálna.</label>
 <div>
 </div>
 {{/Keywords.0}}
 {{#News.0}}
 <div class="col-12">
 {{#Keywords.0}}
-    <h2>Aktuální zprávy</h2>
+    <h2>Aktuálne správy</h2>
 {{/Keywords.0}}
 {{^Keywords.0}}
     <h2>{{Term}}</h2>

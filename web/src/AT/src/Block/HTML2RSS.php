@@ -79,6 +79,9 @@ class HTML2RSS extends \AsyncWeb\Frontend\Block{
                         echo "\n".'<!-- Error in query : '.$config["rule_perex"].' -->';
                     }
                     
+                    if(substr($link,0,2) == "//"){
+                        $link = "https:".$link;
+                    }
                     if(substr($link,0,1) == "/"){
                         $link = substr($link,1);
                     }
@@ -86,13 +89,24 @@ class HTML2RSS extends \AsyncWeb\Frontend\Block{
                         if(!$allowother){
                             if(substr($link,0,strlen($base)) != $base){
                                 
-                                echo "\n".'<!-- Link to other site: '.$link.' -->';
+                                //echo "\n".'<!-- Link to other site: '.htmlspecialchars($link).' -->';
                             
                                 continue;
                             }
                         }
                     }else{
                         $link = $base.$link;
+                    }
+                    
+                    if($config["removeparams"]){
+                        $pos = strpos($link,"?");
+                        if($pos > 0){
+                            $link = substr($link,0,$pos);
+                        }
+                        $pos = strpos($link,"#");
+                        if($pos > 0){
+                            $link = substr($link,0,$pos);
+                        }
                     }
                     
                     if($link && $perex){
@@ -111,8 +125,8 @@ class HTML2RSS extends \AsyncWeb\Frontend\Block{
                         //var_dump($perex);
                     }else{
                         echo "\n".'<!-- 
-Link: '.$link.'
-Perex: '.$perex.' -->';
+Link: '.htmlspecialchars($link).'
+Perex: '.htmlspecialchars($perex).' -->';
 
                     }
                 }

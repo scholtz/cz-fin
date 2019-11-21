@@ -39,7 +39,7 @@ class Invoice{
         $invoicenumber = $this->getNextNumber($currency);
         
         
-        DB::u("fin_invoices",$ret = md5($orderId),[
+        DB::u("out.fin_invoices",$ret = md5($orderId),[
             "email"=>$orderData["email"],
             "invoicenumber"=>$invoicenumber,
             "created"=>time(),
@@ -68,7 +68,7 @@ class Invoice{
         $send = false
     ){
         $invoicenumber = $this->getNextNumber($currency);
-        DB::u("fin_invoices",$ret = md5(uniqid()),[
+        DB::u("out.fin_invoices",$ret = md5(uniqid()),[
             "email"=>$email,
             "invoicenumber"=>$invoicenumber,
             "created"=>time(),
@@ -87,7 +87,7 @@ class Invoice{
         return $ret;
     }
     public function getInvoicePDF($id,$email = false,$returnPath = false){
-        $invoice = DB::gr("fin_invoices",["id2"=>$id]);
+        $invoice = DB::gr("out.fin_invoices",["id2"=>$id]);
         if(!$invoice) return false;
         $html = $this->getInvoiceHTML($id);
         $name = "invoice-".$invoice["invoicenumber"]."-".md5($html).".pdf";
@@ -134,13 +134,13 @@ class Invoice{
         }
     }
     public function getInvoiceHTML($id){
-        $invoice = DB::gr("fin_invoices",["id2"=>$id]);
+        $invoice = DB::gr("out.fin_invoices",["id2"=>$id]);
         if(!$invoice) return false;
         $client = ["name"=>"Klient z IP: ".$_SERVER["REMOTE_ADDR"]];
         if($email = $invoice["email"]){
-            $client = DB::gr("user_invoicedata",["email"=>$email]);
+            $client = DB::gr("out.user_invoicedata",["email"=>$email]);
             if(!$client){
-                DB::u("user_invoicedata",md5(uniqid()),["name"=>$email,"email"=>$email]);
+                DB::u("out.user_invoicedata",md5(uniqid()),["name"=>$email,"email"=>$email]);
                 $client = DB::gr("user_invoicedata",["email"=>$email]);
             }
         }
@@ -154,9 +154,9 @@ class Invoice{
         return \AsyncWeb\Text\Template::loadTemplate("Accounting_InvoicePDF",[
                 "InvoiceNumber"=>$invoice["invoicenumber"],
                 "SpecificSymbol"=>$invoice["specificsymbol"],
-                "a"=>number_format($invoice["grossvalue"],2,","," "),
+                "a"=>number_format($invoice["grossvalue"]+$invoice["discount"],2,","," "),
                 "OrderNumber"=>$invoice["ordernumber"],
-                "ta"=>number_format($invoice["grossvalue"]-$invoice["discount"],2,","," "),
+                "ta"=>number_format($invoice["grossvalue"],2,","," "),
                 "d"=>number_format($invoice["discount"],2,","," "),
                 "n"=>$invoice["itemname"],
                 "Currency"=>strtoupper($invoice["currency"]),
@@ -182,7 +182,7 @@ class Invoice{
                 $code = "115";
         }
         $y = date("y");
-        $row = DB::qbr("fin_invoices",["col"=>["max(`invoice_number`)"=>"c"],"where"=>["currency"=>$currency]]);
+        $row = DB::qbr("out.fin_invoices",["cols"=>["c"=>"max(invoicenumber)"],"where"=>["currency"=>$currency]]);
         if($row["c"]){
            $latest = $row["c"];
         }else{

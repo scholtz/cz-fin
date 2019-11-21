@@ -16,7 +16,13 @@ class News extends \AsyncWeb\Frontend\Block{
         $errcode = URLParser::v("errcode");
         if(!$errcode) $errcode = 8;
         
-        $row = DB::qbr("dev02.${lang}_spravy_texts",["cols"=>["time","id2","web","data"],"where"=>["id2"=>URLParser::v("id")]]);
+        $time = date("ym");
+        $row = DB::qbr("dev02fast.${lang}_${time}_news_webs",["cols"=>["time","id2","web","data"],"where"=>["id2"=>URLParser::v("id")]]);
+        //var_dump(DB::error());
+        if(!$row){
+            $row = DB::qbr("dev02.${lang}_spravy_texts",["cols"=>["time","id2","web","data"],"where"=>["id2"=>URLParser::v("id")]]);
+        }
+        
         if(!$row){
             $this->setData(["Error"=>"Not found"]);
             return;

@@ -131,7 +131,8 @@ class Header extends \AsyncWeb\Frontend\Block{
         '.Language::get("Statistiky").'
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="/Stats">'.Language::get("Statistiky dat").'</a>
+        <a class="dropdown-item" href="/MonitoringInfo">'.Language::get("Media monitoring statistics").'</a>
+        <a class="dropdown-item" href="/Stats">'.Language::get("Government data statistics").'</a>
         <a class="dropdown-item" href="/Datasety">'.Language::get("Seznam použitých datových zdrojů").'</a>
       </div>
     </li>

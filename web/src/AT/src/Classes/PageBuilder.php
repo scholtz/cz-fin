@@ -15,7 +15,7 @@ class PageBuilder{
         return $this->config = [
             "devcz.data_mfcr_dic_bad_core"=>[
                 "context"=>"baddic",    
-                "name"=>"Registr spolehlivosti plátců DPH",
+                "name"=>("Registr spolehlivosti plátců DPH"),
                 "type"=>"ram",
                 "ico-col"=>"dic",
                 "date-col"=>"od",
@@ -23,7 +23,7 @@ class PageBuilder{
             ],
             "devcz.data_czfin_rating"=>[
                 "context"=>"rating",    
-                "name"=>"CZ-FIN Rating firem",
+                "name"=>("CZ-FIN Rating firem"),
                 "ico-col"=>"id2",
                 "date-col"=>"od",
                 "multiplier"=>0,
@@ -31,7 +31,7 @@ class PageBuilder{
             ],
             "devcz.data_arescz_company_core"=>[
                 "context"=>"ares",    
-                "name"=>"ARES",
+                "name"=>("ARES"),
                 "ico-col"=>"ico",
                 "date-col"=>"od",
                 "multiplier"=>0,
@@ -39,7 +39,7 @@ class PageBuilder{
             ],
             "devcz.data_firmy_ares02_core"=>[
                 "context"=>"res",    
-                "name"=>"Registr ekonomických subjektů",
+                "name"=>("Registr ekonomických subjektů"),
                 "ico-col"=>"id2",
                 "date-col"=>"od",
                 "type"=>"db",
@@ -47,7 +47,7 @@ class PageBuilder{
             ],
             "devcz.data_posta_datovaschranka"=>[
                 "context"=>"datastorage",    
-                "name"=>"Datové schránky",
+                "name"=>("Datové schránky"),
                 "ico-col"=>"ico",
                 "date-col"=>"od",
                 "type"=>"db",
@@ -55,7 +55,7 @@ class PageBuilder{
             ],
             "devczfast.data_all_core_faktury"=>[
                 "context"=>"invoices",    
-                "name"=>"Faktury",
+                "name"=>("Faktury"),
                 "type"=>"db",
                 "multiplier"=>2,
                 "sum-col"=>"data-castka-s-dph",
@@ -66,7 +66,7 @@ class PageBuilder{
             
             "devczfast.data_all_core_smlouvy"=>[
                 "context"=>"smlouvy",    
-                "name"=>"Smlouvy",
+                "name"=>("Smlouvy"),
                 "type"=>"db",
                 "multiplier"=>2,
                 "search-col"=>"data-popis",
@@ -76,7 +76,7 @@ class PageBuilder{
             
             "devcz.data_smlouvy_core"=>[
                 "context"=>"registr_smlouv",    
-                "name"=>"Registr smlouv",
+                "name"=>("Registr smlouv"),
                 "type"=>"db",
                 "multiplier"=>1,
                 "sum-col"=>"smlouva-hodnotaBezDph",
@@ -88,7 +88,7 @@ class PageBuilder{
             
             "devcz.data_mze_dpb_core"=>[
                 "context"=>"mze_vymery",    
-                "name"=>"Výměry zemědělských oblastí",
+                "name"=>("Výměry zemědělských oblastí"),
                 "ico-col"=>"ico",
                 "date-col"=>"od",
                 "type"=>"db",
@@ -97,7 +97,7 @@ class PageBuilder{
             ],
             "devczfast.data_all_core_objednavky"=>[
                 "context"=>"orders",    
-                "name"=>"Objednávky",
+                "name"=>("Objednávky"),
                 "type"=>"ram",
                 "sum-col"=>"data-celkova-castka",
                 "search-col"=>"data-popis",
@@ -105,52 +105,52 @@ class PageBuilder{
             ],
             "devczfast.data_all_core_pokuty"=>[
                 "context"=>"pokuty",    
-                "name"=>"Pokuty",
+                "name"=>("Pokuty"),
                 "type"=>"ram",
                 "multiplier"=>-0.5,
             ],
             "devczfast.data_all_core_rozhodnuti"=>[
                 "context"=>"rozhodnuti",
-                "name"=>"Rozhodnutí",
+                "name"=>("Rozhodnutí"),
                 "type"=>"ram",
             ],
             "devczfast.data_all_core_prostory"=>[
                 "context"=>"rozhodnuti",    
-                "name"=>"Prostory",
+                "name"=>("Prostory"),
                 "type"=>"ram",
             ],
             "devczfast.data_all_core_setreni"=>[
                 "context"=>"setreni",    
-                "name"=>"Šetrení",
+                "name"=>("Šetrení"),
                 "type"=>"ram",
                 "multiplier"=>-0.2,
             ],
             "devczfast.data_all_core_seznamy_podnikatelov"=>[
                 "context"=>"seznamy",    
-                "name"=>"Seznamy podnikatelov",
+                "name"=>("Seznamy podnikatelov"),
                 "type"=>"ram",
                 "date-col"=>"od",
             ],
             "devczfast.data_all_core_seznam_vladnich_instituci"=>[
                 "context"=>"instituce",    
-                "name"=>"Státne instituce",
+                "name"=>("Státne instituce"),
                 "type"=>"ram",
             ],
             "devczfast.data_all_core_sport"=>[
                 "context"=>"sport",    
-                "name"=>"Šport",
+                "name"=>("Šport"),
                 "type"=>"ram",
                 "date-col"=>"od",
             ],
             "devczfast.data_all_core_skoly"=>[
                 "context"=>"skoly",    
-                "name"=>"Školy",
+                "name"=>("Školy"),
                 "type"=>"ram",
                 "date-col"=>"od",
             ],
             "devczfast.data_all_core_granty"=>[
                 "context"=>"granty",    
-                "name"=>"Granty",
+                "name"=>("Granty"),
                 "type"=>"ram",
                 "date-col"=>"od",
             ],
@@ -195,12 +195,12 @@ class PageBuilder{
         $baddic = DB::qbr("devcz.data_mfcr_dic_bad_core",["where"=>$w= ["dic"=>$row["ico"],["col"=>"datumzukonceninespolehlivosti","op"=>"is","value"=>null]]]);
         
         if($baddic){
-            $page .= '<div class="alert alert-danger">POZOR! Společnost má záznam v registri nespolehlivých plátců DPH</div>';
+            $page .= '<div class="alert alert-danger">{{record-in-unreliable-vat-register}}</div>';
             $body -= 100;
         }else{
             $baddic = DB::qbr("devcz.data_mfcr_dic_bad_core",["where"=>$w= ["dic"=>$row["ico"]]]);
             if($baddic){
-                $page .= '<div class="alert alert-warning">POZOR! Společnost měla záznam v registri nespolehlivých plátců DPH</div>';
+                $page .= '<div class="alert alert-warning">{{was-record-in-unreliable-vat-register}}</div>';
                 $body -= 20;
             }
             
@@ -209,28 +209,28 @@ class PageBuilder{
         $page .= '<table class="table table-striped table-hover table-sm table-bordered">';
         
         
-        $page .= '<tr><th>'.Language::get("IČO").'</th><td>'.$row["ico"].'</td><td></td></tr>';
+        $page .= '<tr><th>{{IČO}}</th><td>'.$row["ico"].'</td><td></td></tr>';
         
         if($sidlo["text"]){
-            $page .= '<tr><th>'.Language::get("Adresa").'</th><td>'.$sidlo["text"].'</td><td></td></tr>';
+            $page .= '<tr><th>{{Adresa}}</th><td>'.$sidlo["text"].'</td><td></td></tr>';
         }
         if($row["datumzapisu"]){
-            $page .= '<tr><th>Datum zápisu</th><td>'.date("d.m.Y",strtotime($row["datumzapisu"])).'</td><td></td></tr>';
+            $page .= '<tr><th>{{Datum zápisu}}</th><td>'.date("d.m.Y",strtotime($row["datumzapisu"])).'</td><td></td></tr>';
         }
         if($row["datumvzniku"]){
-            $page .= '<tr><th>Datum vzniku</th><td>'.$row["datumvzniku"].'</td><td></td></tr>';
+            $page .= '<tr><th>{{Datum vzniku}}</th><td>'.$row["datumvzniku"].'</td><td></td></tr>';
         }
         if($row["datumvymazu"]){
-            $page .= '<tr><th>Datum výmazu</th><td>'.date("d.m.Y",strtotime($row["datumvymazu"])).'</td><td></td></tr>';
+            $page .= '<tr><th>{{Datum výmazu}}</th><td>'.date("d.m.Y",strtotime($row["datumvymazu"])).'</td><td></td></tr>';
         }
         if($row["newscount"] > 0){
-            $page .= '<tr><th>Monitoring médií</th><td>';
+            $page .= '<tr><th>{{Monitoring médií}}</th><td>';
             $name = str_replace("-"," ",$row["clearfirma"]);
             $name = ucwords($name);
 
             $body += 23;
             
-            $page .= '<a href="/Spravy/search='.$name.'" title="'.htmlspecialchars($name).' v médiích">'.$name.'</a>';
+            $page .= '<a href="/Spravy/search='.$name.'" title="'.htmlspecialchars($name).' {{v médiích}}">'.$name.'</a>';
             $page .= '</td><td></td></tr>';
         }
         
@@ -238,7 +238,7 @@ class PageBuilder{
         while($fosobarow = DB::f($fosobares)){
             
             $page .= '<tr><th>';
-            $page .= mb_strtoupper(mb_substr($fosobarow["funkce"],0,1)).mb_substr($fosobarow["funkce"],1);
+            $page .= '{{'.mb_strtoupper(mb_substr($fosobarow["funkce"],0,1)).mb_substr($fosobarow["funkce"],1).'}}';
             $page .= '</th><td>';
             if($fosobarow["newscount"] > 0){
                 $page .= '<a href="/Spravy/search='.urlencode($fosobarow["jmeno"].' '.$fosobarow["prijmeni"]).'" title="'.htmlspecialchars($fosobarow["jmeno"].' '.$fosobarow["prijmeni"]).' v médiích">';
@@ -269,7 +269,7 @@ class PageBuilder{
             else if($r > 10){$text = "E";}
             else {$text = "F";}
             
-            $page .= '<tr><th>Rating firmy</th><td><b>'.$text.'</b> - '.number_format($r,2).' percentil v ČR</td><td></td></tr>';
+            $page .= '<tr><th><a href="/Cenik#rating">{{Rating firmy}}</a></th><td><b>'.$text.'</b> - '.number_format($r,2).' {{percentil v ČR}}</td><td></td></tr>';
         }
         
         $page .= '</table>';
@@ -304,11 +304,11 @@ class PageBuilder{
         $body = 0; $page = "";
         $ico = $row["ico"];
         $page.= '<table class="table table-striped table-hover table-sm table-bordered">';
-        $page.= '<tr><th>'.Language::get("Hlidac Statu").'</th><td><a class="btn btn-xs btn-light" href="https://www.hlidacstatu.cz/subjekt/'.$ico.'" target="_blank">https://www.hlidacstatu.cz/subjekt/'.$ico.'</a></td></tr>';
+        $page.= '<tr><th>{{Hlidac Statu}}</th><td><a class="btn btn-xs btn-light" href="https://www.hlidacstatu.cz/subjekt/'.$ico.'" target="_blank">https://www.hlidacstatu.cz/subjekt/'.$ico.'</a></td></tr>';
         
         if($info = DB::qbr("devcz.data_katfirem_core",["where"=>["ic"=>$ico],"order"=>["id"=>"desc"]])){
             if($url = $info["source"]){
-                $page.= '<tr><th>'.Language::get("Katalog-Firem").'</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
+                $page.= '<tr><th>{{"Katalog-Firem}}</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
             }
         }
         
@@ -321,7 +321,7 @@ class PageBuilder{
                 if($nace = DB::gr("sknace",["id4"=>$naceid4])){
                     if(!$retnace) $retnace = $naceid4;
                     if($url = "https://www.k-f.cz/".$nace["id5"]."/strana-1/$ico"){
-                        $page.= '<tr><th>'.Language::get("K-F").'</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
+                        $page.= '<tr><th>K-F</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
                     }
                 }
             }
@@ -386,7 +386,7 @@ class PageBuilder{
             }
             
             if($url = $info["source"]){
-                $page.= '<tr><th>'.Language::get("Zive-Firmy").'</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
+                $page.= '<tr><th>Zive-Firmy</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
             }
         }
         
@@ -425,7 +425,7 @@ class PageBuilder{
             }
             
             if($url = $info["source"]){
-                $page.= '<tr><th>'.Language::get("ABC").'</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
+                $page.= '<tr><th>ABC</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
             }
         }
         
@@ -437,7 +437,7 @@ class PageBuilder{
             if($firmyczinfo = DB::gr("devcz.data_firmycz_core",["web1"=>$w])){
                 $firmyczMatched = true;
                 $url = $firmyczinfo["source"];
-                $page.= '<tr><th>'.Language::get("Firmy.cz").'</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
+                $page.= '<tr><th>Firmy.cz</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
             }
         }
         foreach($emails as $email=>$t){
@@ -445,7 +445,7 @@ class PageBuilder{
             if($firmyczinfo = DB::gr("devcz.data_firmycz_core",["email1"=>$email])){
                 $firmyczMatched = true;
                 $url = $firmyczinfo["source"];
-                $page.= '<tr><th>'.Language::get("Firmy.cz").'</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
+                $page.= '<tr><th>Firmy.cz</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
             }
         }
         if($firmyczMatched){
@@ -484,10 +484,10 @@ class PageBuilder{
         
         
         $url = 'https://www.detail.cz/firma/cz-'.ltrim($ico,"0");
-        $page.= '<tr><th>'.Language::get("MERK").'</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
+        $page.= '<tr><th>MERK</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
 
         $url = 'https://rejstrik-firem.kurzy.cz/'.$ico.'/';
-        $page.= '<tr><th>'.Language::get("Kurzy.cz").'</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
+        $page.= '<tr><th>Kurzy.cz</th><td><a class="btn btn-xs btn-light" href="'.$url.'" target="_blank">'.$url.'</a></td></tr>';
 
 
         $page.= '</table>';
@@ -495,10 +495,10 @@ class PageBuilder{
         $add = "";
         arsort($webs);
         if($webs){
-            $add .= '<div class="col-4"><table class="table table-striped table-hover table-sm table-bordered"><thead><th><h3>Webstránka</h3></th></thead><tbody>';
+            $add .= '<div class="col-4"><table class="table table-striped table-hover table-sm table-bordered"><thead><th><h3>{{Webstránka}}</h3></th></thead><tbody>';
             foreach($webs as $web=>$t){
                 if($membership == "free"){
-                    $add .= '<tr><td><a class="btn btn-xs btn-light" target="_blank" href="/Premium"><img src="/img/premium.jpg" alt="Vyžaduje se PREMIUM účet" title="Vyžaduje se PREMIUM účet" /></a></td></tr>';
+                    $add .= '<tr><td><a class="btn btn-xs btn-light" target="_blank" href="/Premium"><img src="/img/premium.jpg" alt="{{Vyžaduje se PREMIUM účet}}" title="{{Vyžaduje se PREMIUM účet}}" /></a></td></tr>';
                 }else{
                     $add .= '<tr><td><a class="btn btn-xs btn-light" target="_blank" href="'.$web.'">'.$web.'</a></td></tr>';
                 }
@@ -507,7 +507,7 @@ class PageBuilder{
         }
         arsort($phones);
         if($phones){
-            $add .= '<div class="col-4"><table class="table table-striped table-hover table-sm table-bordered"><thead><th><h3>Telefón</h3></th></thead><tbody>';
+            $add .= '<div class="col-4"><table class="table table-striped table-hover table-sm table-bordered"><thead><th><h3>{{Telefón}}</h3></th></thead><tbody>';
             foreach($phones as $web=>$t){
                 if($membership == "free"){
                     $add .= '<tr><td><a class="btn btn-xs btn-light" target="_blank" href="/Premium"><img src="/img/premium.jpg" alt="Vyžaduje se PREMIUM účet" title="Vyžaduje se PREMIUM účet" /></a></td></tr>';
@@ -519,10 +519,10 @@ class PageBuilder{
         }
         arsort($emails);
         if($emails){
-            $add .= '<div class="col-4"><table class="table table-striped table-hover table-sm table-bordered"><thead><th><h3>Email</h3></th></thead><tbody>';
+            $add .= '<div class="col-4"><table class="table table-striped table-hover table-sm table-bordered"><thead><th><h3>{{Email}}</h3></th></thead><tbody>';
             foreach($emails as $web=>$t){
                 if($membership == "free"){
-                    $add .= '<tr><td><a class="btn btn-xs btn-light" target="_blank" href="/Premium"><img src="/img/premium.jpg" alt="Vyžaduje se PREMIUM účet" title="Vyžaduje se PREMIUM účet" /></a></td></tr>';
+                    $add .= '<tr><td><a class="btn btn-xs btn-light" target="_blank" href="/Premium"><img src="/img/premium.jpg" alt="{{Vyžaduje se PREMIUM účet}}" title="{{Vyžaduje se PREMIUM účet}}" /></a></td></tr>';
                 }else{
                     $add .= '<tr><td><a class="btn btn-xs btn-light" target="_blank" href="mailto:'.$web.'">'.$web.'</a></td></tr>';
                 }
@@ -533,7 +533,7 @@ class PageBuilder{
             $add = '<div class="row">'.$add.'</div>';
         }
         
-        $page = '<h2>'.Language::get("Kontakty a další zdroje").'</h2>'.$add.'<h3>'.Language::get("Katalogy firem").'</h3>'.$page;
+        $page = '<h2>{{Kontakty a další zdroje}}</h2>'.$add.'<h3>{{Katalogy firem}}</h3>'.$page;
         reset($emails);
         $email = key($emails);
         reset($phones);
@@ -620,7 +620,7 @@ class PageBuilder{
             $page .= '<div class="card"><h5 class="card-header">
             <a data-toggle="collapse" href="#nace" aria-expanded="true" aria-controls="nace" id="heading-nace" class="d-block">
                 <i class="fa fa-chevron-down pull-right"></i>
-                Činnosti
+                {{Činnosti}}
             </a>
             </h5>
             <div id="nace" class="collapse show" aria-labelledby="heading-nace">
@@ -842,7 +842,7 @@ class PageBuilder{
                 $page .= '<div class="card"><h5  class="card-header">
                 <a data-toggle="collapse" href="#'.$dataconfig["context"].'" aria-expanded="false" aria-controls="'.$dataconfig["context"].'" id="heading-'.$dataconfig["context"].'" class="d-block">
                     <i class="fa fa-chevron-down pull-right"></i>
-                    '.$dataconfig["name"].'
+                    {{'.$dataconfig["name"].'}}
                 </a>
                 </h5>
                 <div id="'.$dataconfig["context"].'" class="collapse" aria-labelledby="heading-'.$dataconfig["context"].'">
@@ -861,7 +861,7 @@ class PageBuilder{
                         }
                         
                         if($col == "source" && $value){
-                            $value = '<a class="btn btn-light" target="_blank" href="'.$value.'">[ZDROJ]</a>';
+                            $value = '<a class="btn btn-light" target="_blank" href="'.$value.'">[{{ZDROJ}}]</a>';
                         }
                         $page .= '<td title="'.$col.'">'.$value.'</td>';
                         

@@ -26,6 +26,7 @@ class HTML2RSS extends \AsyncWeb\DefaultBlocks\Form{
 				array("name"=>"Link rule","form"=>["type"=>"textarea"],"data"=>array("col"=>"rule_link"),"usage"=>array("MFi","MFu")),
 				array("name"=>"Perex rule","form"=>["type"=>"textarea"],"data"=>array("col"=>"rule_perex"),"usage"=>array("MFi","MFu")),
 				array("name"=>"RemoveBeforeProcessing", "form"=>["type"=>"textarea"],"data"=>array("col"=>"preprocessor"),"usage"=>array("MFi","MFu")),
+				array("name"=>"Remove Params","data"=>array("col"=>"removeparams"),"usage"=>array("MFi","MFu","DBVs","DBVe")),
 				array("name"=>"LastChange","data"=>array("col"=>"od"),"filter"=>array("type"=>"date","format"=>"c"),"usage"=>array("DBVs","DBVe")),
 			),
             "order"=>array("od"=>"desc"),
